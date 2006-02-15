@@ -1,0 +1,11 @@
+Package: ffmanova
+Type: Package
+Title: Fifty-fifty manova
+Version: 1.0
+Date: 2005-12-22
+Author: Øyvind Langsrud
+Maintainer: Bjørn-Helge Mevik <bhx5@mevik.net>
+Encoding: latin1
+Description: More about what it does (maybe more than one line)
+License: What license is it under?
+URL: (optional) URL?
