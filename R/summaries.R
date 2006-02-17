@@ -7,7 +7,7 @@ print.ffmanova <- function(x, digits = max(getOption("digits") - 3, 3), ...) {
         ncol(x$pRaw), "(ok?) responses:\n")
     tab <- with(x, data.frame(df, exVarSS, c(nPC, NA), c(nBU, NA),
                               c(exVarPC, NA), c(exVarBU, NA), c(pValues, NA)))
-    dimnames(tab) <- list(c(bob$termNames, "Residuals"),
+    dimnames(tab) <- list(c(x$termNames, "Residuals"),
                           c("Df", "exVarSS", "nPC", "nBU", "exVarPC",
                             "exVarBU", "p-Value"))
     tab <- tab[-1,]                     # Drop the (Intercept) row
