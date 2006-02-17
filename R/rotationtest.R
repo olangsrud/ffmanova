@@ -1,29 +1,29 @@
 # %=============== rotationtest.m ====================
 # % [pAdjusted,pAdjFDR,simN] = rotationtest(modelData,errorData,simN)
 # %     calculates adjusted p-values by rotation testing.
-# %     
+# %
 # % Input:
 # %       modelData(*,*) - The model observations
 # %       errorData(*,*) - The error observations
-# %                 simN - Number of simulations.     
+# %                 simN - Number of simulations.
 # %
 # % Output: pAdjusted - Adjusted p-values according to FWE
 # %           pAdjFDR - Adjusted p-values according to FDR
 # %              simN - Number of simulations performed
-# %     
+# %
 # % Calling: siminfo
 # %
-# % NOTE1: errorData may be incomplete (rows of zeros)              
+# % NOTE1: errorData may be incomplete (rows of zeros)
 # %        Then dfE as input is needed:
 # %              rotationtest(modelData,errorData,simN,dfE)
-# %   
+# %
 # % NOTE2: repsim used when nObs >> nVar
 # %          That is, not exactly the same simulations
 # %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # % Copyright, Oyvind Langsrud, MATFORSK, 2005 %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# function [pAdjusted,pAdjFDR,simN] = ... 
+# function [pAdjusted,pAdjFDR,simN] = ...
 # rotationtest(modelData,errorData,simN,dfE)
 # dispsim_default = 1;  %%% !! hard coded constant !! %%%
 # dispsim=dispsim_default;
@@ -35,19 +35,19 @@
 # q = size(Y,2);
 # dfT = dfH + dfE; %dfT = size(Y,1);
 # dfT_ = size(Y,1);
-# X = zeros(dfT,dfH); 
+# X = zeros(dfT,dfH);
 # X(1:dfH,1:dfH) = diag(ones(dfH,1));
-# if(dfH==0| dfE==0 | q==0)    
+# if(dfH==0| dfE==0 | q==0)
 #    pAdjusted=NaN*ones(1,q);
 #    pAdjFDR=NaN*ones(1,q);
 #    return;
 # end
 # ss =  zeros(1,q);
 # sss = zeros(1,q);
-# for j=1:q  
-#     if(norm(Y(:,j))>0) 
-#         Y(:,j) = Y(:,j)/(norm(Y(:,j))); 
-#     end 
+# for j=1:q
+#     if(norm(Y(:,j))>0)
+#         Y(:,j) = Y(:,j)/(norm(Y(:,j)));
+#     end
 #     ss(j)= Y(1:dfH,j)' * Y(1:dfH,j);
 # end
 # Ys = sortrows([Y' ss' (1:q)'],dfT_+1);
@@ -81,7 +81,7 @@
 # i=0;
 # while(i<simN)
 #     i=i+1;
-#     %%%---%%%  Z = Xs´ * Ys;  
+#     %%%---%%%  Z = Xs´ * Ys;
 #     if(repsim)
 #         if(repindex==0)
 #             [Xs,r]=qr(randn(sizeX),0);
@@ -90,45 +90,45 @@
 #         repindex = mod(repindex+1,repsim);
 #     else
 #         [Xs,r]=qr(randn(sizeX),0);
-#         Z = Xs(1:dfT_,:)' * Ys;     
+#         Z = Xs(1:dfT_,:)' * Ys;
 #     end
 #     sss=sum(Z.*Z,1); %for(j=1:q) sss(j)= Z(:,j)´ * Z(:,j); end
 #     maxss=0;
-#     for j=1:q  
+#     for j=1:q
 #         maxss=max(maxss,sss(j));
 #         if(maxss>=ss(j)) m(j) = m(j)+1; end
-#     end    
+#     end
 #     %%%%% Start FDR calc
 #     sss_sorted = [sort(sss) Inf];
 #     jObs=1;
-#     for j=1:q 
+#     for j=1:q
 #         while(sss_sorted(jObs) < ss(j))
 #             jObs=jObs+1;
 #         end
-#         mFDR(j) = mFDR(j) + min(1,(q+1-jObs)/(q+1-j));  
+#         mFDR(j) = mFDR(j) + min(1,(q+1-jObs)/(q+1-j));
 #     end
 #     %%%%% End FDR calc
 #     %%%%%% START display part %%%%%%%%%
-#     %%% !! hard coded constant !! %%%  I.e. 10,(9/10),5,20,2 are hard coded ... 
+#     %%% !! hard coded constant !! %%%  I.e. 10,(9/10),5,20,2 are hard coded ...
 #     if(dispsim)
 #     if(mod(i,step)==0)
 #         if(i==10*step & stepflag==10)
 #             difftime=etime(clock,t0);
 #             difftime=(9/10)*difftime;
 #             if(difftime<2)
-#                 if((10*step)<=simN/20) 
-#                     step=step*10; 
+#                 if((10*step)<=simN/20)
+#                     step=step*10;
 #                 end
 #             else
 #                 if(difftime<5)
-#                     if((5*step)<=simN/20) 
-#                         step=step*5; 
+#                     if((5*step)<=simN/20)
+#                         step=step*5;
 #                         stepflag=5;
 #                     end
 #                 else
 #                     if(difftime<10)
-#                         if((2*step)<=simN/20) 
-#                             step=step*2; 
+#                         if((2*step)<=simN/20)
+#                             step=step*2;
 #                             stepflag=2;
 #                         end
 #                     end
@@ -137,11 +137,11 @@
 #             t0=clock;
 #         end
 #         pause(0.001);  % need this to catch mouse click
-#         try 
+#         try
 #             pause_=get(infofig,'UserData');
 #             if(pause_)
 #                 uiwait(infofig);
-#             end   
+#             end
 #             set(infofig,'UserData',0);
 #             set(findobj('Tag','text2'),'String',strvcat(' ',...
 #                 sprintf('%d out of %d',i,simN),...
@@ -157,7 +157,7 @@
 # end
 # %%%%%% START display part %%%%%%%%%
 # if(dispsim)
-#     try 
+#     try
 #         delete(infofig);
 #     catch
 #     end
@@ -166,51 +166,51 @@
 #     end
 # end
 # %%%%%% END display part %%%%%%%%%
-# %%%%% pAdj 
-# for j=1:q 
+# %%%%% pAdj
+# for j=1:q
 #     pAdjusted(j) = m(j)/(simN+1);
 # end
-# for j=2:q 
+# for j=2:q
 #     % pAdjusted(j) = max(pAdjusted(j:q));
 #     pAdjusted(q+1-j) = max(pAdjusted((q+1-j):(q+2-j)));
 # end
 # pAdjusted = sortrows([pAdjusted' sortindex'],2);
 # pAdjusted = (pAdjusted(:,1))';
-# %%%%% pAdjFDR 
+# %%%%% pAdjFDR
 # pAdjFDR=ones(1,q);
-# for j=1:q 
+# for j=1:q
 #     pAdjFDR(j) = mFDR(j)/(simN+1);
 # end
-# for j=2:q 
+# for j=2:q
 #     %min(pAdjFDR(1:j));
-#     pAdjFDR(j) = min(pAdjFDR((j-1):j)); 
+#     pAdjFDR(j) = min(pAdjFDR((j-1):j));
 # end
 # pAdjFDR = sortrows([pAdjFDR' sortindex'],2);
 # pAdjFDR = (pAdjFDR(:,1))';
 ####################################################################
-rotationtest = function(modelData,errorData,simN=999,dfE=-1,dispsim=1){
-dfH = dim(modelData)[1]; 
+rotationtest = function(modelData,errorData,simN=999,dfE=-1,dispsim = TRUE){
+dfH = dim(modelData)[1];
 if(dfE<0)  # errordata may be incomplete
     dfE = dim(errorData)[1]
 #end
 Y  = rbind(modelData,errorData)
 q = dim(Y)[2]
-dfT = dfH + dfE; 
+dfT = dfH + dfE;
 dfT_ = dim(Y)[1]
 X = matrix(0,dfT,dfH)
 X[1:dfH,1:dfH] = diag(dfH)
 if(dfH==0| dfE==0 | q==0){
-   pAdjusted = rep(NaN,q)  
+   pAdjusted = rep(NaN,q)
    pAdjFDR = rep(NaN,q)
    return(list(pAdjusted=pAdjusted,pAdjFDR=pAdjFDR,simN=simN))
 }#end
-ss = rep(0,q); 
+ss = rep(0,q);
 sss = rep(0,q);
 for(j in 1:q){
     normYj = sqrt(sum(Y[,j]^2))
-    if(normYj>0) 
-        Y[,j] = Y[,j]/normYj 
-    #end 
+    if(normYj>0)
+        Y[,j] = Y[,j]/normYj
+    #end
     ss[j]= sum(Y[1:dfH,j]^2)
 }#end
 
@@ -252,31 +252,31 @@ while(i<simN){
            flush.console()
        }#end
     #end
-    #%%%%%% END display part %%%%%%%%%    
-    i=i+1; #%%%---%%%  Z = Xs´ * Ys;  
+    #%%%%%% END display part %%%%%%%%%
+    i=i+1; #%%%---%%%  Z = Xs´ * Ys;
     if(repsim){
         if(repindex==0)
-            Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1)))
+            Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1), LAPACK = TRUE))
         #end
         Z = t(Xs[(repindex*dfT_+1):((repindex+1)*dfT_),,drop = FALSE]) %*% Ys
         repindex = (repindex+1)%%repsim
     }else{
-        Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1)))
+        Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1), LAPACK = TRUE))
         Z = t(Xs[1:dfT_,,drop = FALSE]) %*% Ys
     }#end
     sss=colSums(Z*Z) #### apply(Z*Z,2,sum)
-    
 
-    
+
+
     sss_cummax = cummax(sss)            ### to linjer erstatter løkke nedefor
     m = m + as.numeric(sss_cummax>ss)   ### ikke cummax i matlab
-    
+
     #maxss=0;
     #for(j in 1:q){
     #    maxss=max(maxss,sss[j]);
-    #    if(maxss>=ss[j]) 
+    #    if(maxss>=ss[j])
     #        m[j] = m[j]+1
-    #}#end    
+    #}#end
 
 
     #%%%%% Start FDR calc
@@ -285,14 +285,14 @@ while(i<simN){
     o2 = order(c(ss,sss))
     plassering = (1:(2*q))[o2<=q]
     mFDR = mFDR + pmin(ones_1_q,(plass_p0-plassering)/divisor)
-    
+
     # gammel kode nedefor (denne algoritmen er raskere i Matlab)
     #sss_sorted = c(sort(sss),Inf)
     #jObs=1;
     #for(j in 1:q){
     #    while(sss_sorted[jObs] < ss[j])
     #        jObs=jObs+1
-    #    mFDR[j] = mFDR[j] + min(1,(q+1-jObs)/(q+1-j));  
+    #    mFDR[j] = mFDR[j] + min(1,(q+1-jObs)/(q+1-j));
     #}#end
     #%%%%% End FDR calc
 }#end
@@ -302,7 +302,7 @@ if(dispsim)
 #end
 #%%%%%% END display part %%%%%%%%%
 
-#%%%%% pAdj 
+#%%%%% pAdj
 for(j in 1:q)
     pAdjusted[j] = m[j]/(simN+1)
 #end
@@ -312,7 +312,7 @@ for(j in 2:q)
 pAdjusted = pAdjusted[order(sortindex)]
 
 
-#%%%%% pAdjFDR 
+#%%%%% pAdjFDR
 pAdjFDR=rep(1,q)
 for(j in 1:q)
     pAdjFDR[j] = mFDR[j]/(simN+1)
