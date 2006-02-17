@@ -34,7 +34,7 @@
 # yNames=[];
 # if(stand)
 #    Y = stdStand(Y);
-# end  
+# end
 # model = xObj.model;
 # xyObj = xy_Obj(xObj,Y,yNames);
 # nTerms = length(xyObj.xObj.df_D_test);
@@ -54,7 +54,7 @@
 #    modelData = xyObj.hypObs{i};
 #    %if(normY < 1e-250 | norm([errorData´,modelData´])/normY < 1e-12)% Singularity problems
 #    %   [exVar1_,exVar2_,dim_,dimX_,dimY_,bufferDim_,D_,E_,A_,M_,pD_,pE_,pA_,pM_] = ...
-#    %      ffmanovatest(modelData(:,[]),errorData(:,[]),part,partBufDim,minBufDim, ... 
+#    %      ffmanovatest(modelData(:,[]),errorData(:,[]),part,partBufDim,minBufDim, ...
 #    %      maxBufDim,minErrDf,cp,stand);
 #    %%%---%%%
 #    if(iscell(xyObj.errorObs))
@@ -66,10 +66,10 @@
 #    end
 #    if(normY < 1e-250 | normTest/normY < 1e-12)% Singularity problems
 #       [exVar1_,exVar2_,dim_,dimX_,dimY_,bufferDim_,D_,E_,A_,M_,pD_,pE_,pA_,pM_] = ...
-#          ffmanovatest(modelData(:,[]),zeros(dfError,0),part,partBufDim,minBufDim, ... 
+#          ffmanovatest(modelData(:,[]),zeros(dfError,0),part,partBufDim,minBufDim, ...
 #          maxBufDim,minErrDf,cp,stand);
 #    else
-#       [exVar1_,exVar2_,dim_,dimX_,dimY_,bufferDim_,D_,E_,A_,M_,pD_,pE_,pA_,pM_] = ... 
+#       [exVar1_,exVar2_,dim_,dimX_,dimY_,bufferDim_,D_,E_,A_,M_,pD_,pE_,pA_,pM_] = ...
 #          ffmanovatest(modelData,xyObj.errorObs,part,partBufDim,minBufDim,...
 #          maxBufDim,minErrDf,cp,stand);
 #    end
@@ -124,11 +124,11 @@
 #              s10 = ' ';
 #           end
 #           outputText=outLine(outputText,sprintf('%s%s%s%s%s%s%s%s%s%s',s1,s2,s3,s4,s5,s6,s7,s8,s9,s10));
-#        end  
+#        end
 #     end
 #     if(stand)
 #        s5 = sprintf(' - STANDARDIZATION ON  ');
-#     else 
+#     else
 #        s5 = sprintf(' - STANDARDIZATION OFF ');
 #     end
 #     if(approx)
@@ -139,7 +139,7 @@
 #     outputText=outLine(outputText,sprintf('%s%s%s%s%s%s%s%s%s%s',s1,s2,s3,s4,s5,s6));
 # results.outputText = outputText;
 #############################################################################
-manova5050 = function(xyObj,stand){ 
+manova5050 = function(xyObj,stand){
 #if(stand) Y = stdStand(Y)
 #xyObj = xy_Obj(dObj,Y)
 model = xyObj$dObj$model
@@ -149,7 +149,7 @@ nBU = c()
 exVarPC = c()
 exVarBU = c()
 pValues = c()
-normY = norm(Y)
+normY = norm(xyObj$Y)
 for(i in 1:nTerms){
    modelData = xyObj$hypObs[[i]]
    if(is.list(xyObj$errorObs)){
