@@ -132,9 +132,7 @@ c(res1,res2,res3)
 }
 
 ## Test of new formula interface:
-ffmanova2 <- function(formula, data, stand = TRUE, nSim = 0) {
-
-    ## META: We start with standard formula mumbo-jumbo...
+ffmanova2 <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
 
     ## Get the model frame.  META: This is unneccessary general for the
     ## moment, but perhaps subset and na.action will be added later.
@@ -180,31 +178,34 @@ ffmanova2 <- function(formula, data, stand = TRUE, nSim = 0) {
     ## Do the manova:
     res1 = manova5050(xyObj,stand)
     ## And the rotation tests:
-    res2 = rotationtests(xyObj, rep(nSim,length.out=nTerms))
+    res2 = rotationtests(xyObj, rep(nSim,length.out=nTerms), verbose = verbose)
     ## And the univariate tests:
     res3 = unitests(xyObj)
     ## Return everything:
-    c(res1,res2,res3)
+    structure(c(res1,res2,res3), class = "ffmanova")
 }
 
-rotationtests = function(xyObj,nSim){
-nTerms = length(xyObj$dObj$df_D_test)
-nYvar = dim(xyObj$Y)[2]
-pAdjusted = matrix(1,nTerms,nYvar)
-pAdjFDR = matrix(1,nTerms,nYvar)
-simN_ = c()
-for(i in 1:nTerms){
-   if(nSim[i]) cat(xyObj$dObj$termNames[[i]],'  -  ',nSim[i],'rotation simulations')
-   if(is.list(xyObj$errorObs)){
-      res = rotationtest(xyObj$hypObs[[i]],xyObj$errorObs[[1]],nSim[i],xyObj$errorObs[[2]])
-   }else{
-      res = rotationtest(xyObj$hypObs[[i]],xyObj$errorObs,nSim[i])
-   } #end
-   pAdjusted[i,] = res$pAdjusted
-   pAdjFDR[i,]   = res$pAdjFDR
-   simN_ = c(simN_ ,res$simN)
-}
-list(pAdjusted=pAdjusted,pAdjFDR=pAdjFDR,simN=simN_)
+rotationtests = function(xyObj, nSim, verbose = TRUE){
+    nTerms = length(xyObj$dObj$df_D_test)
+    nYvar = dim(xyObj$Y)[2]
+    pAdjusted = matrix(1,nTerms,nYvar)
+    pAdjFDR = matrix(1,nTerms,nYvar)
+    simN_ = c()
+    for(i in 1:nTerms){
+        if(isTRUE(verbose) && nSim[i] > 0)
+            cat(xyObj$dObj$termNames[[i]],'  -  ',nSim[i],'rotation simulations')
+        if(is.list(xyObj$errorObs)){
+            res <- rotationtest(xyObj$hypObs[[i]], xyObj$errorObs[[1]],
+                                nSim[i], xyObj$errorObs[[2]], dispsim = verbose)
+        }else{
+            res <- rotationtest(xyObj$hypObs[[i]], xyObj$errorObs, nSim[i],
+                                dispsim = verbose)
+        } #end
+        pAdjusted[i,] = res$pAdjusted
+        pAdjFDR[i,]   = res$pAdjFDR
+        simN_ = c(simN_ ,res$simN)
+    }
+    list(pAdjusted=pAdjusted,pAdjFDR=pAdjFDR,simN=simN_)
 }
 
 
