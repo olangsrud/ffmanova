@@ -189,6 +189,8 @@
 # pAdjFDR = (pAdjFDR(:,1))';
 ####################################################################
 rotationtest = function(modelData,errorData,simN=999,dfE=-1,dispsim = TRUE){
+## Dirty hack; maybe do something more clever/faster when simN == 0?
+if (simN == 0) dispsim <- FALSE
 dfH = dim(modelData)[1];
 if(dfE<0)  # errordata may be incomplete
     dfE = dim(errorData)[1]
