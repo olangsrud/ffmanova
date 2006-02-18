@@ -208,10 +208,11 @@ if(dfH==0| dfE==0 | q==0){
 }#end
 ss = rep(0,q);
 sss = rep(0,q);
+normY <- sqrt(colSums(Y^2))
 for(j in 1:q){
-    normYj = sqrt(sum(Y[,j]^2))
-    if(normYj>0)
-        Y[,j] = Y[,j]/normYj
+    ##normYj = sqrt(sum(Y[,j]^2))
+    if(normY[j] > 0)
+        Y[,j] = Y[,j] / normY[j]
     #end
     ss[j]= sum(Y[1:dfH,j]^2)
 }#end
@@ -242,7 +243,7 @@ repindex = 0;
 i=0;
 plass_p0  = (q+1):(2*q) # used by FDR calc (R-algorithm)
 divisor   = seq(q,1)    # used by FDR calc (R-algorithm)
-ones_1_q  = rep(1,q)    # used by FDR calc (R-algorithm)
+#ones_1_q  = rep(1,q)    # used by FDR calc (R-algorithm)
 while(i<simN){
     #%%%%%% START display part %%%%%%%%%
     if(dispsim)
@@ -260,11 +261,12 @@ while(i<simN){
         if(repindex==0)
             Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1), LAPACK = TRUE))
         #end
-        Z = t(Xs[(repindex*dfT_+1):((repindex+1)*dfT_),,drop = FALSE]) %*% Ys
+        Z <- crossprod(Xs[(repindex*dfT_+1):((repindex+1)*dfT_),,drop = FALSE],
+                       Ys)
         repindex = (repindex+1)%%repsim
     }else{
         Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1), LAPACK = TRUE))
-        Z = t(Xs[1:dfT_,,drop = FALSE]) %*% Ys
+        Z = crossprod(Xs[1:dfT_,,drop = FALSE], Ys)
     }#end
     sss=colSums(Z*Z) #### apply(Z*Z,2,sum)
 
@@ -283,10 +285,14 @@ while(i<simN){
 
     #%%%%% Start FDR calc
 
-    sss = sort(sss)
+    ## Denne er overflødig:
+    ##sss = sort(sss)
     o2 = order(c(ss,sss))
     plassering = (1:(2*q))[o2<=q]
-    mFDR = mFDR + pmin(ones_1_q,(plass_p0-plassering)/divisor)
+    ##mFDR = mFDR + pmin(ones_1_q,(plass_p0-plassering)/divisor)
+    adj <- (plass_p0-plassering)/divisor
+    adj[adj > 1] <- 1
+    mFDR <- mFDR + adj
 
     # gammel kode nedefor (denne algoritmen er raskere i Matlab)
     #sss_sorted = c(sort(sss),Inf)
