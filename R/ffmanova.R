@@ -119,7 +119,8 @@
 
 # Xnew as input is not implemented in R
 
-ffmanova = function(formel,Y,stand=1,nSim=0){
+## Original implementation:
+ffmanova.orig = function(formel,Y,stand=1,nSim=0){
 model_data = modelData(formel)
 dObj = d_Obj(model_data$D,model_data$model)
 if(stand) Y = stdStand(Y)
@@ -131,8 +132,7 @@ res3 = unitests(xyObj)
 c(res1,res2,res3)
 }
 
-## Test of new formula interface:
-ffmanova2 <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
+ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
 
     ## Get the model frame.  META: This is unneccessary general for the
     ## moment, but perhaps subset and na.action will be added later.
