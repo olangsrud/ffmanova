@@ -1,7 +1,7 @@
 
 
 matlabColon <- function(from, to) { if(from > to) numeric(0) else from:to }
-# Author: Bjørn-Helge Mevik
+# Author:: Bjørn-Helge Mevik
 
 listX = function(X,f,...){
 df = c2df(X)
