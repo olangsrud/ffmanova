@@ -22,7 +22,7 @@ ffmanovatest(modelData, errorData, stand = 0, part = c(0.9, 0.5), partBufDim = 0
  }
 
 \details{
- \code{modelData} and \item{errorObs} correspond to \item{hypObs} and \item{errorObs} calculated by \code{xy_Obj}.
+ \code{modelData} and \code{errorObs} correspond to \code{hypObs} and \code{errorObs} calculated by \code{xy_Obj}.
 }
 
 \value{

@@ -33,7 +33,7 @@ rotationtest(modelData, errorData, simN = 999, dfE = -1, dispsim = TRUE)
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 \note{}
 
- ~Make other sections like Warning with \section{Warning }{....} ~
+% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
 

@@ -35,12 +35,12 @@ linregEnd(Umodel,Y)
 
 \item{Umodel}{Matrix of score values according to the PCR model.}
 \item{VmodelDivS}{Matrix that can be used to calculate \code{Umodel} 
-      from \code{X}. That is, \code{Umodel} equals \code{X %*% VmodelDivS}.}
-\item{VextraDivS1}{Matrix that can be used to check estimability. That is, predictions for a new X cannot be made if \code{Xnew %*% VextraDivS1} is (close to) zero.}
+      from \code{X}. That is, \code{Umodel} equals \code{X \%*\% VmodelDivS}.}
+\item{VextraDivS1}{Matrix that can be used to check estimability. That is, predictions for a new X cannot be made if \code{Xnew \%*\% VextraDivS1} is (close to) zero.}
 \item{BetaU}{Matrix of regression parameters according to the PCR model.}
 \item{msError}{Mean square error of each response}
 \item{errorObs}{Error observations that can be used in multivariate testing}
-\item{Yhat}{Fitted values. Equals \code{Umodel %*% BetaU} }
+\item{Yhat}{Fitted values. Equals \code{Umodel \%*\% BetaU} }
 }
 
 \references{ ~put references to the literature/web site here ~ }

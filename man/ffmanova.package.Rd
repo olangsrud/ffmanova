@@ -1,6 +1,6 @@
 \name{ffmanova-package}
 \alias{ffmanova-package}
-\alias{ffmanova}
+%\alias{ffmanova} This gives a warning
 \docType{package}
 \title{
 What the package does (short line)
@@ -30,11 +30,11 @@ Maintainer: Who to complain to <yourfault@somewhere.net>
 ~~ Literature or other references for background information ~~
 }
 \keyword{ package }
-~~ Optionally other keywords from doc/KEYWORDS, one per line
+%~~ Optionally other keywords from doc/KEYWORDS, one per line
 \seealso{
 ~~ Optional links to other man pages, e.g. ~~
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
-~~ simple examples of the most important functions ~~
+#~~ simple examples of the most important functions ~~
 }
