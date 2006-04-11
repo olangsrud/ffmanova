@@ -13,5 +13,5 @@ print.ffmanova <- function(x, digits = max(getOption("digits") - 3, 3), ...) {
     tab <- tab[-1,]                     # Drop the (Intercept) row
     printCoefmat(tab, digits = digits, cs.ind = 2, tst.ind = NULL,
                  zap.ind = c(1,3,4), has.Pvalue = TRUE, na.print = "", ...)
-    invisible(tab)
+    invisible(x)
 }
