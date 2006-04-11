@@ -3,36 +3,37 @@
 \alias{ffmanova}
 \title{Fifty-fifty MANOVA}
 \description{
-  Calculate a 50-50 Manova.  FIXME.
+  Fit a 50-50 Manova model and calculate rotation and univariate tests.
 }
 \usage{
-ffmanova(formel, Y, stand = 1, nSim = 0)
+ffmanova(formula, data, stand = TRUE, nSim = 0, verbose = TRUE)
 }
 \arguments{
-  \item{formel}{formula.}
-  \item{Y}{matrix.  Response data(?)}
-  \item{stand}{numeric.  Whether \code{Y} should be standardized. FIXME:
-  should maybe be a logical}
+  \item{formula}{Model formula.}
+  \item{data}{Data frame with model data.}
+  \item{stand}{Logical.  Whether the responses should be standardized.}
   \item{nSim}{nonnegative integer.  The number of simulations to use in
-    the rotation tests(?)}
+    the rotation tests}
+  \item{verbose}{Logical.  If \code{TRUE}, status/trace FIXME information from the
+    rotation tests is printed.}
 }
 \details{
-  FIXME: Fyll ut.
+  The function fits a 50-50 Manova model, and then performs rotation
+  tests (if \code{nSim > 0}) and univariate tests on the terms in the model.
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+  An object of class \code{"ffmanova"}, which consists of the concatenated
+  results from the underlying functions \code{\link{manova5050}},
+  \code{\link{rotationtests}} and \code{\link{unitests}}.
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{Øyvind Langsrud}
+\references{FIXME: Øyvind: legg inn referanse til 50-50 manova-artikkel her}
+\author{Øyvind Langsrud and Bjørn-Helge Mevik}
 \note{ ~~further notes~~ 
 
  ~Make other sections like Warning with \section{Warning }{....} ~
 }
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\seealso{\code{\link{manova5050}}, \code{\link{rotationtests}} and
+  \code{\link{unitests}}; the work horse functions.}
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
