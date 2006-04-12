@@ -56,5 +56,6 @@ fixModelMatrix(mOld)
 mt <- terms(y ~ a + b + a:b + a:c + I(a^2) + I(a^3) + I(a^2):b)
 print(mOld <- attr(mt, "factor"))
 fixModelMatrix(mOld)
+}
 \keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
 \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{uniTest}
 \alias{uniTest}
 
@@ -14,7 +16,7 @@ uniTest(modelData, errorData, dfError = dim(errorData)[1])
 \arguments{
 \item{modelData}{matrix of hypothesis observations }
 \item{errorData}{matrix of error observations}
-\item{dfE}{Degrees of freedom for error needs to be specified if \code{errorData} is incomplete}}
+\item{dfError}{Degrees of freedom for error needs to be specified if \code{errorData} is incomplete}}
 
 \details{
 }
