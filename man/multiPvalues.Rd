@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{multiPvalues}
 \alias{multiPvalues}
 
@@ -43,5 +45,4 @@ multiPvalues(D, E, A, M, dim, dimX, dimY)
 \examples{
 }
 
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{htest}

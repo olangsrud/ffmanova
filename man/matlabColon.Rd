@@ -1,3 +1,4 @@
+%% $Id$
 \encoding{latin1}
 \name{matlabColon}
 \alias{matlabColon}

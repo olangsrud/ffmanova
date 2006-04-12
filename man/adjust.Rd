@@ -1,3 +1,4 @@
+%% $Id$
 \encoding{latin1}
 \name{adjust}
 \alias{adjust}
@@ -23,5 +24,4 @@ adjust(X, Y)
 \seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
 \examples{
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{models}

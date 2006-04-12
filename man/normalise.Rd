@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{normalize}
 \alias{normalize}
 
@@ -36,5 +38,4 @@ normalize(X, means = numeric(0), stds = numeric(0))
 
 \examples{ 
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{array}

@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{norm}
 \alias{norm}
 
@@ -8,3 +10,5 @@
 is eqivalent to
 \code{svd(X, nu = 0, nv = 0)$d[1]}
 }
+\keyword{array}
+\keyword{algebra}

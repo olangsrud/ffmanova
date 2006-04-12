@@ -1,3 +1,4 @@
+%% $Id$
 \encoding{latin1}
 \name{absStand}
 \alias{absStand}
@@ -39,5 +40,4 @@ stdStand(Y)
 \seealso{\code{\link{center}}}
 \examples{
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{array}

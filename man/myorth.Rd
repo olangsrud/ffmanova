@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{myorth}
 \alias{myorth}
 \alias{myrank}
@@ -37,5 +39,5 @@ A matrix, whose columns form an orthonormal basis. Or a single number, which is 
 
 \examples{ 
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{array}
+\keyword{algebra}

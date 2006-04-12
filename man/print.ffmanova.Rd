@@ -1,3 +1,4 @@
+%% $Id$
 \encoding{latin1}
 \name{print.ffmanova}
 \alias{print.ffmanova}
@@ -24,10 +25,4 @@ print.ffmanova(x, digits = max(getOption("digits") - 3, 3), \dots)
 }
 \author{Bjørn-Helge Mevik}
 \seealso{\code{\link{ffmanova}}, \code{\link{printCoefmat}}}
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-}
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{print}

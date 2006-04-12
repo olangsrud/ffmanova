@@ -1,3 +1,4 @@
+%% $Id$
 \encoding{latin1}
 \name{m2c}
 \alias{m2c}
@@ -43,5 +44,4 @@ c2df(CC)
 \seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
 \examples{
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{utilities}

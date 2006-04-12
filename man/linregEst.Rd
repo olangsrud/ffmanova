@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{linregEst}
 \alias{linregEst}
 \alias{linregStart}
@@ -52,5 +54,5 @@ When the number of error degrees of freedom exceeds the number of linearly indep
 \seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
 \examples{ 
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{regression}
+\keyword{multivariate}

@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{ffmanova-package}
 \alias{ffmanova-package}
 %\alias{ffmanova} This gives a warning
@@ -29,8 +31,11 @@ Maintainer: Who to complain to <yourfault@somewhere.net>
 \references{
 ~~ Literature or other references for background information ~~
 }
-\keyword{ package }
-%~~ Optionally other keywords from doc/KEYWORDS, one per line
+\keyword{package}
+\keyword{models}
+%\keyword{regression}
+\keyword{design}
+\keyword{multivariate}
 \seealso{
 ~~ Optional links to other man pages, e.g. ~~
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~

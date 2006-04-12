@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{my_pValueF}
 \alias{my_pValueF}
 
@@ -8,3 +10,4 @@
 is eqivalent to
 \code{pf(f,ny1,ny2,lower.tail = FALSE)}
 }
+\keyword{htest}

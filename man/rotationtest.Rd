@@ -56,5 +56,4 @@ rotationtests(xyObj, nSim, verbose = TRUE)
 %\examples{ 
 %}
 
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{htest}

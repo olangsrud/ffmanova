@@ -1,3 +1,4 @@
+%% $Id$
 \encoding{latin1}
 \name{ffmanova}
 \alias{ffmanova}
@@ -39,5 +40,7 @@ ffmanova(formula, data, stand = TRUE, nSim = 0, verbose = TRUE)
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{models}
+%\keyword{regression}
+\keyword{design}
+\keyword{multivariate}

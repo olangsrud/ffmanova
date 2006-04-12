@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{manova5050}
 \alias{manova5050}
 \title{Computation of 50-50 MANOVA results}
@@ -39,5 +41,6 @@ Classical multivariate ANOVA (MANOVA) are useless in many practical cases. The t
 \seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
 \examples{
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{models}
+\keyword{design}
+\keyword{multivariate}

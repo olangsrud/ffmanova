@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{orth_D}
 \alias{orth_D}
 \title{Making adjusted design matrix data}
@@ -26,5 +28,5 @@ orth_D(D, model, method)
 \seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
 \examples{ 
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{models}
+\keyword{design}

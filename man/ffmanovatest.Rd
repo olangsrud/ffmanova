@@ -1,3 +1,5 @@
+%% $Id$
+\encoding{latin1}
 \name{ffmanovatest}
 \alias{ffmanovatest}
 \title{50-50 MANOVA testing}
@@ -48,5 +50,5 @@ ffmanovatest(modelData, errorData, stand = 0, part = c(0.9, 0.5), partBufDim = 0
 \seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
 \examples{
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{htest}
+\keyword{design}
