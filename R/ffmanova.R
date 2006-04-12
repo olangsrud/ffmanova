@@ -1,3 +1,4 @@
+### $Id$
 # %=============== ffmanova.m ====================
 # %  results = ffmanova(X,Y,cova,model,xNames,stand,nSim,Xnew)
 # %     or    results = ffmanova(modelFormula,stand,nSim,Xnew)
@@ -122,10 +123,10 @@
 ## Original implementation:
 ffmanova.orig = function(formel,Y,stand=1,nSim=0){
 model_data = modelData(formel)
-dObj = d_Obj(model_data$D,model_data$model)
+xObj = x_Obj(model_data$D,model_data$model)
 if(stand) Y = stdStand(Y)
-xyObj = xy_Obj(dObj,Y)
-nTerms = length(xyObj$dObj$df_D_test)
+xyObj = xy_Obj(xObj,Y)
+nTerms = length(xyObj$xObj$df_D_test)
 res1 = manova5050(xyObj,stand)
 res2 = rotationtests(xyObj, rep(nSim,length.out=nTerms))
 res3 = unitests(xyObj)
@@ -168,12 +169,12 @@ ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
         D[[i]] <- mm[,termNr == i, drop = FALSE]
 
     ## META: Hva gjør denne?  Den brukes bare her.
-    dObj <- d_Obj(D, model)
+    xObj <- x_Obj(D, model)
 
     ## META: Hva gjør denne?  Den brukes bare her.
-    xyObj = xy_Obj(dObj, Y)
+    xyObj = xy_Obj(xObj, Y)
 
-    nTerms = length(xyObj$dObj$df_D_test)
+    nTerms = length(xyObj$xObj$df_D_test)
 
     ## Do the manova:
     res1 = manova5050(xyObj,stand)
@@ -186,14 +187,14 @@ ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
 }
 
 rotationtests = function(xyObj, nSim, verbose = TRUE){
-    nTerms = length(xyObj$dObj$df_D_test)
+    nTerms = length(xyObj$xObj$df_D_test)
     nYvar = dim(xyObj$Y)[2]
     pAdjusted = matrix(1,nTerms,nYvar)
     pAdjFDR = matrix(1,nTerms,nYvar)
     simN_ = c()
     for(i in 1:nTerms){
         if(isTRUE(verbose) && nSim[i] > 0)
-            cat(xyObj$dObj$termNames[[i]],'  -  ',nSim[i],'rotation simulations')
+            cat(xyObj$xObj$termNames[[i]],'  -  ',nSim[i],'rotation simulations')
         if(is.list(xyObj$errorObs)){
             res <- rotationtest(xyObj$hypObs[[i]], xyObj$errorObs[[1]],
                                 nSim[i], xyObj$errorObs[[2]], dispsim = verbose)
@@ -210,7 +211,7 @@ rotationtests = function(xyObj, nSim, verbose = TRUE){
 
 
 unitests = function(xyObj){
-nTerms = length(xyObj$dObj$df_D_test)
+nTerms = length(xyObj$xObj$df_D_test)
 nYvar = dim(xyObj$Y)[2]
 pRaw = matrix(1,nTerms,nYvar)
 stat = matrix(0,nTerms,nYvar)

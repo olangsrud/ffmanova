@@ -1,3 +1,4 @@
+### $Id$
 # %=============== manova_5050.m ====================
 # % function results = manova_5050(xObj,Y,stand)
 # %    Takes a model object (created by x_Obj.m) togheter with a
@@ -141,9 +142,9 @@
 #############################################################################
 manova5050 = function(xyObj,stand){
 #if(stand) Y = stdStand(Y)
-#xyObj = xy_Obj(dObj,Y)
-model = xyObj$dObj$model
-nTerms = length(xyObj$dObj$df_D_test)
+#xyObj = xy_Obj(xObj,Y)
+model = xyObj$xObj$model
+nTerms = length(xyObj$xObj$df_D_test)
 nPC = c()
 nBU = c()
 exVarPC = c()
@@ -170,10 +171,10 @@ for(i in 1:nTerms){
    exVarBU = c(exVarBU ,res$exVar2)
    pValues = c(pValues ,res$pA)
 }#end
-list(termNames=xyObj$dObj$termNames,
+list(termNames=xyObj$xObj$termNames,
      exVarSS = xyObj$ss/xyObj$ssTot,
-     df = c(xyObj$dObj$df_D_test, xyObj$dObj$df_error),
-     df_om = c(xyObj$dObj$df_D_om, xyObj$dObj$df_error),
+     df = c(xyObj$xObj$df_D_test, xyObj$xObj$df_error),
+     df_om = c(xyObj$xObj$df_D_om, xyObj$xObj$df_error),
      nPC = nPC,
      nBU = nBU,
      exVarPC = exVarPC,

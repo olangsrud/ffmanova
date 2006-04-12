@@ -1,8 +1,9 @@
+### $Id$
 # %=============== xy_Obj.m ====================
-# %  xyObj = xy_Obj(xObj,Y,yNames)  
-# %      takes an object created by x_Obj as input and 
-# %      add response values (Y). Further initial computations 
-# %      for prediction and testing is made. 
+# %  xyObj = xy_Obj(xObj,Y,yNames)
+# %      takes an object created by x_Obj as input and
+# %      add response values (Y). Further initial computations
+# %      for prediction and testing is made.
 # %
 # %   Output: XyObj is a structure with fields
 # %          xObj: same as input
@@ -24,10 +25,10 @@
 # xyObj.xObj=xObj;
 # xyObj.Y=Y;
 # xyObj.yNames=yNames;
-# % Continue estimating model where 
-# %  X = "OM-adjusted model matrix" , 
+# % Continue estimating model where
+# %  X = "OM-adjusted model matrix" ,
 # %  Y = Y (reponse data)
-# [xyObj.Beta,xyObj.msError,xyObj.errorObs,xyObj.Yhat] = linregEnd(xObj.Umodel,Y); 
+# [xyObj.Beta,xyObj.msError,xyObj.errorObs,xyObj.Yhat] = linregEnd(xObj.Umodel,Y);
 # ss=[];
 # xyObj.YhatStd = sqrt(sum(xObj.Umodel.^ 2,2)*xyObj.msError);
 # hypObs = cell(size(xObj.D_test));
@@ -46,13 +47,13 @@
 # xyObj.ss = ss;
 # xyObj.hypObs = hypObs;
 ##############################################################
-xy_Obj = function(dObj,Y){
-   xyObj1 = linregEnd(dObj$Umodel,Y)
-YhatStd = sqrt( matrix(rowSums(dObj$Umodel^2),,1) %*% xyObj1$msError )
-ss=c() 
-hypObs = vector("list",length(dObj$D_test))
-for( i in 1:length(dObj$D_test) ){
-  hObs = t(dObj$D_test[[i]])%*%Y
+xy_Obj = function(xObj,Y){
+   xyObj1 = linregEnd(xObj$Umodel,Y)
+YhatStd = sqrt( matrix(rowSums(xObj$Umodel^2),,1) %*% xyObj1$msError )
+ss=c()
+hypObs = vector("list",length(xObj$D_test))
+for( i in 1:length(xObj$D_test) ){
+  hObs = t(xObj$D_test[[i]])%*%Y
   hypObs[[i]] = hObs
   ss = c(ss,sum(hObs^2))
 } #end
@@ -61,6 +62,6 @@ if(is.list(xyObj1$errorObs)){
 }else{
   ss = c(ss,nrow(xyObj1$errorObs)*sum(xyObj1$msError))
 }#end
-xyObj2 = list(dObj=dObj,Y=Y,YhatStd=YhatStd,hypObs=hypObs,ss=ss,ssTotFull=sum(Y^2),ssTot=sum((center(Y))^2))
+xyObj2 = list(xObj=xObj,Y=Y,YhatStd=YhatStd,hypObs=hypObs,ss=ss,ssTotFull=sum(Y^2),ssTot=sum((center(Y))^2))
 c(xyObj1,xyObj2)
 }

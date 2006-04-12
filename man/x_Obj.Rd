@@ -1,6 +1,7 @@
+%% $Id$
+\encoding{latin1}
 \name{x_Obj}
 \alias{x_Obj}
-\alias{d_Obj}
 \title{Creation of a design matrix object}
 \description{
 The function takes the output from \code{modelData} as input and performs initial computations for prediction and testing.
@@ -36,7 +37,6 @@ x_Obj(D, model)
 \references{ ~put references to the literature/web site here ~ }
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 
-\note{In future versions \code{d_Obj} will be renamed to \code{x_Obj} }
 \seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
 \examples{
 }
