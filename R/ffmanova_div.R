@@ -40,7 +40,8 @@ modelData = function(formel){
 
 fixModelMatrix = function(mOld) {
 #print(mOld)
-mOld[mOld>0]=1 # Original m has "b=2" when  "b:I(a^2)"
+mOld[mOld>0]=1 # Original m has "2" when the variable should be coded via
+               # dummy variables
 mNew = mOld
 varNamesOld = attr(mOld,'dimnames')[[1]]
 #varNamesNew = varNamesOld
@@ -81,7 +82,7 @@ for(i in 1:nVar){
           mNew = mNew + a %*%b
         }
  }
- mNew = mNew[index==(1:nVar),,drop=FALSE]
+ mNew[index==(1:nVar),,drop=FALSE]
 }# end  fixModelMatrix
 
 

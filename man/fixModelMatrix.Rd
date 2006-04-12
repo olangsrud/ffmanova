@@ -1,0 +1,60 @@
+%% $Id$
+\encoding{latin1}
+\name{fixModelMatrix}
+\alias{fixModelMatrix}
+\title{Fix the "factor" matrix of a terms object.}
+\description{
+  The function takes the factor matrix of the terms object corresponding
+  to a model formula and changes it so that model hierarchy is preserved
+  also for powers of terms (e.g., \code{I(a^2)}).
+}
+\usage{
+fixModelMatrix(mOld)
+}
+\arguments{
+  \item{mOld}{The factor matrix (i.e. the \code{"factor"} attribute) of a
+    terms object.}
+}
+\details{
+  The ordinary model handling functions in \R do not treat powers of
+  terms (\eqn{a^n}) as being higher order terms (like interaction
+  terms).  \code{fixModelMatrix} takes the \code{"factor"} attribute of
+  a terms object (usually created from a model formula) and changes it
+  such that power terms can be treated hierarchically just like
+  interaction terms.
+
+  The factor matrix has one row for each variable and one coloumn for
+  each term.  Originally, an entry is 0 if the term does not contain
+  the variable.  If it contains the variable, the entry is 1 if the
+  variable should be coded with contrasts, and 2 if it should be coded
+  with dummy variables.  See \code{\link{terms.object}} for details.
+
+  The changes performed by \code{fixModelMatrix} are:
+
+  \itemize{
+    \item Any 2's are changed to 1.
+
+    \item In any coloumn corresponding to a term that contains
+    \code{I(a^n)}, where \code{a} is the name of a variable and \code{n}
+    is a positive integer, the element in the row corresponding to
+    \code{a} is set to \eqn{n}.  For instance, the entry of row \code{D}
+    and coloumn \code{C:I(D^2)} is set to 2.
+
+    \item Rows corresponding to \code{I(a^n)} are deleted.
+  }
+
+  Note that this changes the semantics of the factor matrix: \code{2}
+  no longer means \sQuote{code via dummy variables}.
+}
+\value{
+  A factor matrix.
+}
+\references{ FIXME: Referanse til hierarki? }
+\author{Øyvind Langsrud and Bjørn-Helge Mevik}
+\seealso{\code{\link{terms}}, \code{\link{terms.object}}}
+\examples{
+mt <- terms(y ~ a + b + a:b + a:c + I(a^2) + I(a^3) + I(a^2):b)
+print(mOld <- attr(mt, "factor"))
+fixModelMatrix(mOld)
+\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
+\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
