@@ -9,7 +9,7 @@
 }
 
 \usage{
-normalize(x, center = TRUE, scale = TRUE, avoid.zero.divisor = FALSE)
+stdize(x, center = TRUE, scale = TRUE, avoid.zero.divisor = FALSE)
 }
 
 \arguments{
