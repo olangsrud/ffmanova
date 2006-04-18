@@ -149,7 +149,7 @@ ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
     ## Get the data matrices:
     mm <- model.matrix(mt, mf)
     Y <- model.response(mf, "numeric")
-    if (stand) Y <- stdStand(Y)
+    if (stand) Y <- stdize(Y, center = FALSE, avoid.zero.divisor = TRUE)
 
     ## META: taken from modelData()
     ## Create a `fator/term index matrix':
@@ -217,9 +217,9 @@ pRaw = matrix(1,nTerms,nYvar)
 stat = matrix(0,nTerms,nYvar)
 for(i in 1:nTerms){
    if(is.list(xyObj$errorObs)){
-      res = uniTest(xyObj$hypObs[[i]],xyObj$errorObs[[1]],xyObj$errorObs[[2]])
+      res = unitest(xyObj$hypObs[[i]],xyObj$errorObs[[1]],xyObj$errorObs[[2]])
    }else{
-      res = uniTest(xyObj$hypObs[[i]],xyObj$errorObs)
+      res = unitest(xyObj$hypObs[[i]],xyObj$errorObs)
    } #end
    pRaw[i,] = res$pValues
    stat[i,] = res$stat

@@ -62,6 +62,6 @@ if(is.list(xyObj1$errorObs)){
 }else{
   ss = c(ss,nrow(xyObj1$errorObs)*sum(xyObj1$msError))
 }#end
-xyObj2 = list(xObj=xObj,Y=Y,YhatStd=YhatStd,hypObs=hypObs,ss=ss,ssTotFull=sum(Y^2),ssTot=sum((center(Y))^2))
+xyObj2 = list(xObj=xObj,Y=Y,YhatStd=YhatStd,hypObs=hypObs,ss=ss,ssTotFull=sum(Y^2),ssTot=sum((stdize(Y, scale = FALSE))^2))
 c(xyObj1,xyObj2)
 }

@@ -32,7 +32,7 @@
 # function pValue = my_pValueF_(f,ny1,ny2)
 #      pValue = betainc(ny2*((ny2+ny1*f).^(-1)),ny2/2,ny1/2);
 ################################################################################
-uniTest = function(modelData,errorData,dfError=dim(errorData)[1]){
+unitest = function(modelData,errorData,dfError=dim(errorData)[1]){
 dfModel = dim(modelData)[1];
 nYvar  = dim(modelData)[];
 if(dfModel==0 | dfError==0){

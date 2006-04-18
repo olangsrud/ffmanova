@@ -3,38 +3,9 @@
 matlabColon <- function(from, to) { if(from > to) numeric(0) else from:to }
 # Author:: Bjørn-Helge Mevik
 
-listX = function(X,f,...){
-df = c2df(X)
-X = c2m(X)
-output = f(X,...)
-output$X = m2c(output$X,df)
-output
-}#end listX
-
 
 norm = function(X){
    svd(X, nu = 0, nv = 0)$d[1]
-}
-
-# modelData takes a model formula as input
-modelData = function(formel){
-    ## Create a `term indices matrix':
-    mOld = attr(terms(formel), "factors")
-    mNew = fixModelMatrix(mOld)
-    ## add constant term
-    mNew = cbind("(Intercept)" = 0, mNew)
-    ## transpose
-    model = t(mNew)
-
-    ## Split the model matrix into matrices for each term:
-    D = vector("list",nrow(model))
-    mm =  model.matrix(formel)
-    termNr = attr(mm, "assign") + 1
-    for (i in seq(along = D))
-        D[[i]] <- mm[,termNr == i, drop = FALSE]
-
-    ## Return term matrices and indices matrix
-    list(D=D,model=model)
 }
 
 
