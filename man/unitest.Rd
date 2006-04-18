@@ -1,7 +1,7 @@
 %% $Id$
 \encoding{latin1}
-\name{uniTest}
-\alias{uniTest}
+\name{unitest}
+\alias{unitest}
 \alias{unitests}
 
 \title{Univariate F or t testing}
@@ -11,7 +11,7 @@ The functions perform F or t testing for several responses based on a matrix of 
 }
 
 \usage{
-uniTest(modelData, errorData, dfError = dim(errorData)[1])
+unitest(modelData, errorData, dfError = dim(errorData)[1])
 unitests(xyObj)
 }
 
@@ -23,7 +23,7 @@ unitests(xyObj)
 }
 \details{
   \code{unitests} is a wrapper function that calls
-  \code{uniTest} for each term in the \code{xyObj} (see
+  \code{unitest} for each term in the \code{xyObj} (see
   \code{\link{xy_Obj}} for details) and collects the results.
 
   FIXME: Øyvind kan kanskje forklare sammenhengen/forskjellen mellom
@@ -31,7 +31,7 @@ unitests(xyObj)
 }
 
 \value{
-  \code{uniTest} returns a list with components
+  \code{unitest} returns a list with components
   \item{pValues}{\eqn{p}-values}
   \item{stat}{The test statistics as \eqn{t}-statistics (when single degree of freedom) or \eqn{F}-statistics }
 
