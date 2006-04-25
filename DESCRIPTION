@@ -1,11 +1,11 @@
 Package: ffmanova
 Type: Package
 Title: Fifty-fifty manova
-Version: 1.0
-Date: 2005-12-22
-Author: Øyvind Langsrud
-Maintainer: Bjørn-Helge Mevik <bhx5@mevik.net>
+Version: 0.1
+Date: 2006-05-FIXME
+Author: Øyvind Langsrud and Bjørn-Helge Mevik
+Maintainer: Bjørn-Helge Mevik and Øyvind Langsrud <ffmanova@mevik.net>
 Encoding: latin1
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
-URL: (optional) URL?
+Description: Fifty-fifty manova FIXME: utvid?
+License: GPL version 2
+URL: http://cran.r-project.org/src/contrib/Descriptions/ffmanova.html
