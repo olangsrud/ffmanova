@@ -148,7 +148,7 @@ ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
 
     ## Get the data matrices:
     mm <- model.matrix(mt, mf)
-    Y <- model.response(mf, "numeric")
+    Y <- as.matrix(model.response(mf, "numeric"))
     if (stand) Y <- stdize(Y, center = FALSE, avoid.zero.divisor = TRUE)
 
     ## META: taken from modelData()
