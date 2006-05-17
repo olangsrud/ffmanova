@@ -1,0 +1,68 @@
+%% $Id$
+\encoding{latin1}
+\name{dressing}
+\alias{dressing}
+\docType{data}
+\title{Dressing data}
+\description{
+  A dataset from an experiment studying structural and rheological
+  properties of a full fat dressing.
+}
+\usage{data(dressing)}
+\format{
+  A data frame with 29 observations on the following 7 variables.
+  \describe{
+    \item{\code{press}}{a numeric vector with values 75, 125 and 225.
+      The homogenisation pressure.  FIXME: Unit?}
+    \item{\code{stab}}{a numeric vector with values 0.3, 0.4 and 0.5.
+      Amount (in percent) of stabiliser.}
+    \item{\code{emul}}{a numeric vector with values 0.1, 0.2 and 0.35.
+      Amount (in percent) of emulsifier.}
+    \item{\code{day}}{a factor with levels \code{1}, \dots, \code{5}.
+      The day the experimental run was performed on.}
+    \item{\code{visc}}{a numeric vector.  The measured viscosity of the
+      dressing.}
+    \item{\code{rheo}}{a matrix with 9 columns.  Nine different
+      response-parameters derived from rheological measuring.  These
+      parameters contain information about the physics of the dression
+      (more general that viscosity).}
+    \item{\code{pvol}}{a matrix with 241 columns.  Particle-volume
+      curves.  Using a coulter-counter instrument fat particles were
+      counted and their volumes were registered.  These data are
+      presented as smoothed histograms (equally spaced bins on
+      log-scale).  The total area under the curve represents the total
+      volume of the counted fat particles. The shape of the curve
+      reflects how the total fat volume is distributed among the
+      different particle sizes.}
+  }
+}
+\details{
+  The data comes from an experiment in which full fat dressings were
+  produced with different amount of stabiliser and emulsifier, and with
+  different homogenisation pressure (se above).
+
+  A full factorial \eqn{3^3} design with two additional center
+  points was used.  The experiment was run over five days.  It was
+  unknown up front how many experimental runs could be performed each
+  day, so the order of the runs was randomised.
+
+  For each dressing, viscosity, rheology and particle volume
+  measurements were taken (se above).
+
+  The day is stored as a factor.  The other design variables are stored
+  as numerical variables.  If one wants to use them as factors, one can
+  use e.g. \code{factor(press)} in the model formula, or
+  \code{dressing$press <- factor(dressing$press)} prior to calling the
+  modelling function.
+}
+\source{
+  FIXME: Er dataene hentet fra en publikasjon e.l.?
+}
+\references{
+  FIXME: Er det publisert noe på/med dataene?
+}
+\examples{
+data(dressing)
+## FIXME: Lag ordentlige eksempler
+}
+\keyword{datasets}
