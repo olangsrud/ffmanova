@@ -21,6 +21,7 @@ manova5050(xyObj, stand)
 Classical multivariate ANOVA (MANOVA) are useless in many practical cases. The tests perform poorly in cases with several highly correlated responses and the method collapses when the number of responses exceeds the number of observations. 50-50 MANOVA is made to handle this problem. Principal component analysis (PCA) is an important part of this methodology. Each test is based on a separate PCA.}
 
 \value{ 
+A list with components
 \item{termNames}{model term names}
 \item{exVarSS}{explained variances calculated from sums of squares summed over all responses}
 \item{df}{degrees of freedom - adjusted for other terms in model}
@@ -29,7 +30,8 @@ Classical multivariate ANOVA (MANOVA) are useless in many practical cases. The t
 \item{nBU}{number of principal components used as buffer components}
 \item{exVarPC}{variance explained by \code{nPC} components}
 \item{exVarBU}{variance explained by \code{(nPC+nBU)} components}
-\item{pValues}{50-50 MANOVA p-values} 
+\item{pValues}{50-50 MANOVA p-values}
+\item{stand}{logical.  Whether the responses are standardised.}
 }
 
 \references{ ~put references to the literature/web site here ~ }

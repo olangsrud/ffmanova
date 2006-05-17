@@ -2,9 +2,11 @@
 ### $Id$
 
 print.ffmanova <- function(x, digits = max(getOption("digits") - 3, 3), ...) {
-    cat("--- 50-50 MANOVA Version R1.0 ---",
-        sum(x$df), "(ok?) objects --",
-        ncol(x$pRaw), "(ok?) responses:\n")
+    cat("--- 50-50 MANOVA ",
+        sum(x$df), " objects -- ",
+        ncol(x$pRaw), " responses",
+        if (x$stand) " (standardised)",
+        ":\n", sep = "")
     tab <- with(x, data.frame(df, exVarSS, c(nPC, NA), c(nBU, NA),
                               c(exVarPC, NA), c(exVarBU, NA), c(pValues, NA)))
     dimnames(tab) <- list(c(x$termNames, "Residuals"),

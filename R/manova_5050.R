@@ -179,7 +179,8 @@ list(termNames=xyObj$xObj$termNames,
      nBU = nBU,
      exVarPC = exVarPC,
      exVarBU = exVarBU,
-     pValues = pValues)
+     pValues = pValues,
+     stand = stand)
 }
 
 # % Subfunction
