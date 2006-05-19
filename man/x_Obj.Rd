@@ -4,7 +4,7 @@
 \alias{x_Obj}
 \title{Creation of a design matrix object}
 \description{
-The function takes the output from \code{modelData} as input and performs initial computations for prediction and testing.
+The function takes design/model information as input and performs initial computations for prediction and testing.
 }
 \usage{
 x_Obj(D, model)
@@ -16,13 +16,14 @@ x_Obj(D, model)
 }
 
 \details{
+See \code{ffmanova.R} to see how \code{D} and  \code{model} are created.  
 }
 
 \value{
 \item{df_error}{degrees of freedom for error}
 \item{D}{same as input}
 \item{D_test}{as D, but with Type II* adjusted model terms. Will be used for testing.}
-\item{D_om}{as D, but with OM-adjusted model terms. This is a non-overparameterised representation of the model. Will be used prediction.}
+\item{D_om}{as D, but with OM-adjusted model terms. This is a non-overparameterised representation of the model. Will be used for prediction.}
 \item{df_D_om}{degrees of freedom according to \code{D_om}}
 \item{df_D_test}{degrees of freedom according to \code{D_test}}
 \item{Beta_D}{output from \code{linregEst} where \code{D_om} is response and where \code{D} is regressor}
@@ -34,11 +35,12 @@ x_Obj(D, model)
 \item{termNames}{model term names}
 }
 
-\references{ ~put references to the literature/web site here ~ }
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 
-\seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
-\examples{
+\seealso{ 
+   code{\link{linregEst}},
+   code{\link{xy_Obj}}.
 }
+
 \keyword{models}
 \keyword{design}

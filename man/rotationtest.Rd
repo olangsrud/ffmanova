@@ -29,14 +29,10 @@ rotationtests(xyObj, nSim, verbose = TRUE)
 
 \details{
   \code{modelData} and \code{errorObs} correspond to \code{hypObs} and
-  \code{errorObs} calculated by \code{xy_Obj}.
+  \code{errorObs} calculated by \code{xy_Obj}. These matrices are efficient representations of sums of squares and cross-products (see \code{\link{xy_Obj}} for details). This means that \code{rotationtest} can be viewed as a generalised F-test function.
 
   \code{rotationtests} is a wrapper function that calls
-  \code{rotationtest} for each term in the \code{xyObj} (see
-  \code{\link{xy_Obj}} for details) and collects the results.
-
-  FIXME: Øyvind kan kanskje forklare sammenhengen/forskjellen mellom
-  funksjonene bedre...
+  \code{rotationtest} for each term in the \code{xyObj} and collects the results. 
 }
 
 \value{
@@ -46,7 +42,15 @@ rotationtests(xyObj, nSim, verbose = TRUE)
   \item{simN}{number of simulations performed for each term}
 }
 
-\references{ FIXME: reference(s) to rotation tests }
+\references{ 
+Langsrud, Ø. (2005) 
+Rotation Tests.
+\emph{Statistics and Computing},\bold{15}, 53--60. 
+
+Moen, B., Oust, A., Langsrud, Ø., Dorrell, N., Gemma, L., Marsden, G.L., Hinds, J., Kohler, A., Wren, B.W. and Rudi, K. (2005) 
+An explorative multifactor approach for investigating global survival mechanisms of Campylobacter jejuni under environmental conditions. 
+\emph{Applied and Environmental Microbiology},\bold{71}, 2086-2094.
+}
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 %\note{}

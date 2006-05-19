@@ -22,12 +22,14 @@ unitests(xyObj)
   \item{xyObj}{a design-with-responses object created by \code{\link{xy_Obj}}}
 }
 \details{
+\code{modelData} and \code{errorObs} correspond to \code{hypObs} and
+\code{errorObs} calculated by \code{xy_Obj}. These matrices are efficient representations of sums of squares and cross-products (see \code{\link{xy_Obj}} for details). 
+This means the univariate F-statistics can be calculated straightforwardly from these input matrices. Furthermore, in the single-degree-of-freedom case, t-statistics with correct sign can be obtained. 
+
   \code{unitests} is a wrapper function that calls
   \code{unitest} for each term in the \code{xyObj} (see
   \code{\link{xy_Obj}} for details) and collects the results.
 
-  FIXME: Øyvind kan kanskje forklare sammenhengen/forskjellen mellom
-  funksjonene bedre...
 }
 
 \value{
