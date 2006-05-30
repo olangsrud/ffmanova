@@ -215,6 +215,11 @@ if(bufferDim>maxBufDim)
 if(bufferDim<minBufDim)
    bufferDim = min(minBufDim,max(0,min(dimYfull-dimY,dimFull-dimX-dimY-minErrDf)))
 #end
+
+# Ensure that (dimY+bufferDim) <= rank(Y), where  rank(Y)=myrank(Y,1e-12)
+while( bufferDim>0 & (Y.svd$d[dimY+bufferDim]/Y.svd$d[1]) < (max(dim(Y))*1e-12))
+  bufferDim = bufferDim-1
+
 exVar1 = varMod/sum(ss);
 exVar2 = sum(ss[1:(dimY+bufferDim)])/sum(ss);
 dim = dimFull - bufferDim;
