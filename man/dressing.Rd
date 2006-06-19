@@ -13,11 +13,11 @@
   A data frame with 29 observations on the following 7 variables.
   \describe{
     \item{\code{press}}{a numeric vector with values 75, 125 and 225.
-      The homogenisation pressure.  FIXME: Unit?}
+      The homogenisation pressure.}
     \item{\code{stab}}{a numeric vector with values 0.3, 0.4 and 0.5.
-      Amount (in percent) of stabiliser.}
+      Amount of stabiliser.}
     \item{\code{emul}}{a numeric vector with values 0.1, 0.2 and 0.35.
-      Amount (in percent) of emulsifier.}
+      Amount of emulsifier.}
     \item{\code{day}}{a factor with levels \code{1}, \dots, \code{5}.
       The day the experimental run was performed on.}
     \item{\code{visc}}{a numeric vector.  The measured viscosity of the
@@ -55,14 +55,15 @@
   \code{dressing$press <- factor(dressing$press)} prior to calling the
   modelling function.
 }
-\source{
-  FIXME: Er dataene hentet fra en publikasjon e.l.?
+\source{The data is taken from a research project which was financed by a grant (131472/112) from the Norwegian Research Council. The project was managed by Stabburet, which is a major manufacturer of dressing in Norway.
 }
+
 \references{
   FIXME: Er det publisert noe på/med dataene?
+  Har vært foredrag, men ikke noen ordentlig referanse. 
 }
 \examples{
-data(dressing)
-## FIXME: Lag ordentlige eksempler
+## See \code{\link{ffmanova}}
+## FIXME 
 }
 \keyword{datasets}

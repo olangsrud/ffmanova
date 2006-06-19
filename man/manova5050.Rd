@@ -34,7 +34,11 @@ A list with components
 \item{stand}{logical.  Whether the responses are standardised.}
 }
 
-\references{ ~put references to the literature/web site here ~ }
+\references{
+Langsrud, Ø. (2002) 
+Rotation Tests.
+\emph{The Statistician},\bold{51}, 305--317. 
+}
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 
