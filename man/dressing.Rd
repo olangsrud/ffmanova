@@ -57,13 +57,4 @@
 }
 \source{The data is taken from a research project which was financed by a grant (131472/112) from the Norwegian Research Council. The project was managed by Stabburet, which is a major manufacturer of dressing in Norway.
 }
-
-\references{
-  FIXME: Er det publisert noe på/med dataene?
-  Har vært foredrag, men ikke noen ordentlig referanse. 
-}
-\examples{
-## See \code{\link{ffmanova}}
-## FIXME 
-}
 \keyword{datasets}
