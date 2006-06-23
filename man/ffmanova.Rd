@@ -1,3 +1,4 @@
+%% $Id$
 \encoding{latin1}
 \name{ffmanova}
 \alias{ffmanova}
@@ -82,9 +83,8 @@ See also \url{http://www.matforsk.no/ola/}.
 
  ~Make other sections like Warning with \section{Warning }{....} ~
 }
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
-
-
+\seealso{\code{\link{manova5050}}, \code{\link{rotationtests}} and
+  \code{\link{unitests}}; the work horse functions.}
 
 \examples{
 load("dressing.RData") 
@@ -125,5 +125,7 @@ Anova(lm(visc ~ (factor(press) + factor(stab) + factor(emul))^2 + day,data=dress
 # A consequence here is that the clear significance of emul disappears.
 Anova(lm(visc ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,data=dressing), type="II")
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{models}
+%\keyword{regression}
+\keyword{design}
+\keyword{multivariate}
