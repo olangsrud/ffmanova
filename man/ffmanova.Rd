@@ -34,10 +34,10 @@ does not influence the results.
 In addition to significance testing an explained variance measure, which is based on sums of sums of squares, is computed for each model term. 
 }
 \value{
-An object of class \code{"ffmanova"}, which consists of the concatenated
+  An object of class \code{"ffmanova"}, which consists of the concatenated
   results from the underlying functions \code{\link{manova5050}},
-  \code{\link{rotationtests}} and \code{\link{unitests}}.
-FIXME Jeg foreslår at beskrivelsene også gjengis her slik at ffmanova.Rd kan fungere som en tilstrekkelig dokumentasjon for en vanlig bruker.
+  \code{\link{rotationtests}} and \code{\link{unitests}}:
+
 \item{termNames}{model term names}
 \item{exVarSS}{explained variances calculated from sums of squares summed over all responses}
 \item{df}{degrees of freedom - adjusted for other terms in model}
@@ -79,10 +79,7 @@ See also \url{http://www.matforsk.no/ola/}.
 
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
-\note{ ~~further notes~~ 
 
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
 \seealso{\code{\link{manova5050}}, \code{\link{rotationtests}} and
   \code{\link{unitests}}; the work horse functions.}
 
