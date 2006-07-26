@@ -120,19 +120,6 @@
 
 # Xnew as input is not implemented in R
 
-## Original implementation:
-ffmanova.orig = function(formel,Y,stand=1,nSim=0){
-model_data = modelData(formel)
-xObj = x_Obj(model_data$D,model_data$model)
-if(stand) Y = stdStand(Y)
-xyObj = xy_Obj(xObj,Y)
-nTerms = length(xyObj$xObj$df_D_test)
-res1 = manova5050(xyObj,stand)
-res2 = rotationtests(xyObj, rep(nSim,length.out=nTerms))
-res3 = unitests(xyObj)
-c(res1,res2,res3)
-}
-
 ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
 
     ## Get the model frame.  META: This is unneccessary general for the

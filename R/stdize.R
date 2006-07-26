@@ -26,6 +26,3 @@ stdize <- function(x, center = TRUE, scale = TRUE, avoid.zero.divisor = FALSE) {
     }
     x
 }
-
-## center brukes én gang, i xy_Obj (som brukes én gang, i ffmanova).
-## stdStand brukes én gang, i ffmanova
