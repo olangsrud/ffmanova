@@ -42,11 +42,9 @@ Rotation Tests.
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 
-\note{The 50-50 MANOVA p-values are based on the Hotelling-Lawley Trace Statistic. The number of components for testing and the number of buffer components are chosen according to default rules.}
+\note{The 50-50 MANOVA \eqn{p}-values are based on the Hotelling-Lawley Trace Statistic. The number of components for testing and the number of buffer components are chosen according to default rules.}
 
-\seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
-\examples{
-}
+\seealso{\code{\link{ffmanova}}}
 \keyword{models}
 \keyword{design}
 \keyword{multivariate}

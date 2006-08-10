@@ -15,9 +15,9 @@ c2m(CC)
 c2df(CC)
 }
 \arguments{
-  \item{M}{ ~~Describe \code{M} here~~ }
-  \item{df}{ ~~Describe \code{df} here~~ }
-  \item{CC}{}
+  \item{M}{matrix to be partitioned according to \code{df}}
+  \item{df}{integer vector.  See Details}
+  \item{CC}{list of matrices, typically the output of \code{m2c}}
 }
 \details{
   \code{m2c} partitions a matrix into a list of matrices, by putting the
@@ -41,7 +41,5 @@ c2df(CC)
 \note{
   \code{sum(df)} must equal \code{ncol(X)}.
 }
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
-\examples{
-}
+\seealso{\code{\link{ffmanova}}}
 \keyword{utilities}

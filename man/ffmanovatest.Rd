@@ -7,14 +7,16 @@
 The function performs 50-50 MANOVA testing based on a matrix of hypothesis observations and a matrix of error observations.
 }
 \usage{
-ffmanovatest(modelData, errorData, stand = 0, part = c(0.9, 0.5), partBufDim = 0.5, minBufDim = 0, maxBufDim = 1e+08, minErrDf = 3, cp = -1)
+ffmanovatest(modelData, errorData, stand = 0, part = c(0.9, 0.5),
+             partBufDim = 0.5, minBufDim = 0, maxBufDim = 1e+08,
+             minErrDf = 3, cp = -1)
 }
 
 \arguments{
   \item{modelData}{matrix of hypothesis observations }
   \item{errorData}{matrix of error observations}
   \item{stand}{Standardisation (0 or 1) of responses }
-  \item{part}{The variance explained required when choosing the number of components for testing. The default value is 0.5, but to chose a single component 0.9 is required. 
+  \item{part}{The variance explained required when choosing the number of components for testing. The default value is 0.5, but to choose a single component 0.9 is required. 
  }
   \item{partBufDim}{tuning parameter for the number of buffer components}
   \item{minBufDim}{minimum (if possible) number of buffer components}
@@ -28,6 +30,7 @@ ffmanovatest(modelData, errorData, stand = 0, part = c(0.9, 0.5), partBufDim = 0
 }
 
 \value{
+  A list with components
 \item{exVar1}{variance explained by \code{dimY} components}  
 \item{exVar2}{variance explained by \code{dimY+bufferDim} components}
 \item{dim}{dimension of final "MANOVA-space"}
@@ -38,17 +41,13 @@ ffmanovatest(modelData, errorData, stand = 0, part = c(0.9, 0.5), partBufDim = 0
 \item{E}{test statistic: Roy's Largest Root}
 \item{A}{test statistic: Hotelling-Lawley Trace Statistic}
 \item{M}{test statistic: Pillay-Bartlett Trace Statistic}
-\item{pD}{p-value: Wilks' Lambda}
-\item{pE}{p-value: LOWER BOUND for Roy's Largest Root}
-\item{pA}{p-value: Hotelling-Lawley Trace Statistic}
-\item{pM}{p-value: Pillay-Bartlett Trace Statistic}
+\item{pD}{\eqn{p}-value: Wilks' Lambda}
+\item{pE}{\eqn{p}-value: LOWER BOUND for Roy's Largest Root}
+\item{pA}{\eqn{p}-value: Hotelling-Lawley Trace Statistic}
+\item{pM}{\eqn{p}-value: Pillay-Bartlett Trace Statistic}
 }
 
-\references{ ~put references to the literature/web site here ~ }
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
-\note{}
-\seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
-\examples{
-}
+\seealso{\code{\link{ffmanova}}}
 \keyword{htest}
 \keyword{design}

@@ -21,7 +21,4 @@ adjust(X, Y)
   A matrix with an orthogonal basis for the adjusted predictor matrix.
 }
 \author{Øyvind Langsrud}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
-\examples{
-}
 \keyword{models}

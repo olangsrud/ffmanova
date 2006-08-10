@@ -55,6 +55,9 @@
   \code{dressing$press <- factor(dressing$press)} prior to calling the
   modelling function.
 }
-\source{The data is taken from a research project which was financed by a grant (131472/112) from the Norwegian Research Council. The project was managed by Stabburet, which is a major manufacturer of dressing in Norway.
+\source{The data is taken from a research project financed by a grant
+  (131472/112) from the Norwegian Research Council.  The project was
+  managed by Stabburet, which is a major manufacturer of dressing in
+  Norway.
 }
 \keyword{datasets}

@@ -2,14 +2,13 @@
 \encoding{latin1}
 \name{matlabColon}
 \alias{matlabColon}
-\title{Simulate Matlab's :}
+\title{Simulate Matlab's `:'}
 \description{
   A function to simulate Matlab's \sQuote{:} operator.
 }
 \usage{
 matlabColon(from, to)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{from}{numeric.  The start value.}
   \item{to}{numeric.  The end value.}

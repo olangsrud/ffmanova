@@ -6,7 +6,7 @@
 \title{p-values from MANOVA test statistics}
 
 \description{
-p-values from the four MANOVA test statistics are calculated according to the traditional F-distribution approximations (exact in some cases).
+\eqn{p}-values from the four MANOVA test statistics are calculated according to the traditional F-distribution approximations (exact in some cases).
 }
 
 \usage{
@@ -28,21 +28,14 @@ multiPvalues(D, E, A, M, dim, dimX, dimY)
 }
 
 \value{
-\item{pD}{p-value: Wilks' Lambda}
-\item{pE}{p-value: LOWER BOUND for Roy's Largest Root}
-\item{pA}{p-value: Hotelling-Lawley Trace Statistic}
-\item{pM}{p-value: Pillay-Bartlett Trace Statistic}
+\item{pD}{\eqn{p}-value: Wilks' Lambda}
+\item{pE}{\eqn{p}-value: LOWER BOUND for Roy's Largest Root}
+\item{pA}{\eqn{p}-value: Hotelling-Lawley Trace Statistic}
+\item{pM}{\eqn{p}-value: Pillay-Bartlett Trace Statistic}
 }
-
-\references{ ~put references to the literature/web site here ~ }
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik} 
 
-\note{ ~~further notes~~ }
-
-\seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
-
-\examples{
-}
+\seealso{\code{\link{ffmanova}}}
 
 \keyword{htest}

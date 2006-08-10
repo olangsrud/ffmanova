@@ -49,7 +49,7 @@ fixModelMatrix(mOld)
 \value{
   A factor matrix.
 }
-\references{ FIXME: Referanse til hierarki? }
+%\references{ FIXME: Referanse til marginalitet? }
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 \seealso{\code{\link{terms}}, \code{\link{terms.object}}}
 \examples{
