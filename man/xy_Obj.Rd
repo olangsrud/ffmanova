@@ -33,7 +33,7 @@ xy_Obj(xObj, Y)
 \references{
 Langsrud, Ø. (2002) 
 50-50 Multivariate Analysis of Variance for Collinear Responses. 
-\emp{The Statistician},\bold{51}, 305--317.
+\emph{The Statistician},\bold{51}, 305--317.
 } 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 \seealso{

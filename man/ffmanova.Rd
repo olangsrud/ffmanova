@@ -86,7 +86,7 @@ See also \url{http://www.matforsk.no/ola/}.
   \code{\link{unitests}}; the work horse functions.}
 
 \examples{
-load("dressing.RData") 
+data(dressing)
 
 # An ANOVA model with all design variables as factors 
 # and with visc as the only response variable.

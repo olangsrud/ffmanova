@@ -10,7 +10,10 @@
   eqivalent to \code{svd(X, nu = 0, nv = 0)$d[1]}.
 }
 \usage{
-\item{X}{a numeric matrix.}
+norm(X)
+}
+\arguments{
+  \item{X}{a numeric matrix.}
 }
 \value{
   The largest singular value of \code{X}.

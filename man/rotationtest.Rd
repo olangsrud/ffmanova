@@ -54,6 +54,6 @@ An explorative multifactor approach for investigating global survival mechanisms
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 
-\seealso{\code{\link{uniTest}}, \code{\link{unitests}}}
+\seealso{\code{\link{unitest}}, \code{\link{unitests}}}
 
 \keyword{htest}
