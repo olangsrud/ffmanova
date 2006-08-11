@@ -7,7 +7,7 @@
 \title{Rotation testing}
 
 \description{
-The functions perform rotation testing based on a matrix of hypothesis observations and a matrix of error observations. Adjusted p-values according to familywise error rates and false discovery rates are calculated.}
+The functions perform rotation testing based on a matrix of hypothesis observations and a matrix of error observations. Adjusted \eqn{p}-values according to familywise error rates and false discovery rates are calculated.}
 
 \usage{
 rotationtest(modelData, errorData, simN = 999, dfE = -1, dispsim = TRUE)
@@ -29,7 +29,7 @@ rotationtests(xyObj, nSim, verbose = TRUE)
 
 \details{
   \code{modelData} and \code{errorObs} correspond to \code{hypObs} and
-  \code{errorObs} calculated by \code{xy_Obj}. These matrices are efficient representations of sums of squares and cross-products (see \code{\link{xy_Obj}} for details). This means that \code{rotationtest} can be viewed as a generalised F-test function.
+  \code{errorObs} calculated by \code{xy_Obj}. These matrices are efficient representations of sums of squares and cross-products (see \code{\link{xy_Obj}} for details). This means that \code{rotationtest} can be viewed as a generalised \eqn{F}-test function.
 
   \code{rotationtests} is a wrapper function that calls
   \code{rotationtest} for each term in the \code{xyObj} and collects the results. 
@@ -37,8 +37,8 @@ rotationtests(xyObj, nSim, verbose = TRUE)
 
 \value{
   Both functions return a list with components
-  \item{pAdjusted}{adjusted p-values according to familywise error rates}
-  \item{pAdjFDR}{adjusted p-values according to false discovery rates}
+  \item{pAdjusted}{adjusted \eqn{p}-values according to familywise error rates}
+  \item{pAdjFDR}{adjusted \eqn{p}-values according to false discovery rates}
   \item{simN}{number of simulations performed for each term}
 }
 
@@ -53,11 +53,7 @@ An explorative multifactor approach for investigating global survival mechanisms
 }
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
-%\note{}
 
 \seealso{\code{\link{uniTest}}, \code{\link{unitests}}}
-
-%\examples{ 
-%}
 
 \keyword{htest}

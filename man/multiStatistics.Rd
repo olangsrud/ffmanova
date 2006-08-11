@@ -20,19 +20,13 @@ multiStatistics(ss)
 \details{These eigenvalues are also known as the squared canonical correlation coefficients.}
 
 \value{
-\item{D}{Wilks' Lambda}
-\item{E}{Roy's Largest Root}
-\item{A}{Hotelling-Lawley Trace Statistic}
-\item{M}{Pillay-Bartlett Trace Statistic}
+  A list with elements
+  \item{D}{Wilks' Lambda}
+  \item{E}{Roy's Largest Root}
+  \item{A}{Hotelling-Lawley Trace Statistic}
+  \item{M}{Pillay-Bartlett Trace Statistic}
 }
-
-\references{ ~put references to the literature/web site here ~ }
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik} 
-
-\note{ ~~further notes~~ }
-
-\examples{
-}
 
 \keyword{htest}

@@ -8,7 +8,7 @@
   ANOVA table.
 }
 \usage{
-print.ffmanova(x, digits = max(getOption("digits") - 3, 3), \dots)
+\S3method{print}{ffmanova}(x, digits = max(getOption("digits") - 3, 3), \dots)
 }
 \arguments{
   \item{x}{\code{"ffmanova"} object.  Typically created by \code{\link{ffmanova}}.}

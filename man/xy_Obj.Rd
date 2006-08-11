@@ -14,7 +14,7 @@ xy_Obj(xObj, Y)
   \item{Y}{response matrix}
 }
  
-\details{Traditionally, sums of squares and cross-products (SSC) is the multivariate generalisation of sums of squares. When there is a large number of responses this representation is inefficient and therefore linear combinations of observations (Langsrud, 2002) is stored instead, such as \code{errorObs}. The corresponding SSC matrix can be obtained by \code{t(errorObs)%*%errorObs}. When there is a large number of observations the errorObs representation is also inefficient, but it these cases it is possible to chose a representation with several zero rows. Then, errorObs is stored as a two-component list: A matrix containing the nonzero rows of errorObs and an integer representing the degrees of freedom for error (number of rows in the full errorObs matrix).
+\details{Traditionally, sums of squares and cross-products (SSC) is the multivariate generalisation of sums of squares. When there is a large number of responses this representation is inefficient and therefore linear combinations of observations (Langsrud, 2002) is stored instead, such as \code{errorObs}. The corresponding SSC matrix can be obtained by \code{t(errorObs)\%*\%errorObs}. When there is a large number of observations the errorObs representation is also inefficient, but it these cases it is possible to chose a representation with several zero rows. Then, errorObs is stored as a two-component list: A matrix containing the nonzero rows of errorObs and an integer representing the degrees of freedom for error (number of rows in the full errorObs matrix).
 }
 \value{
   A list with components
@@ -37,9 +37,7 @@ Langsrud, Ø. (2002)
 } 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 \seealso{
-code{\link{x_Obj}}.
+  \code{\link{x_Obj}}.
 }
-%\examples{
-%}
 \keyword{models}
 \keyword{design}

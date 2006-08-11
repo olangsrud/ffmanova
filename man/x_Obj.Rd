@@ -16,14 +16,14 @@ x_Obj(D, model)
 }
 
 \details{
-See \code{ffmanova.R} to see how \code{D} and  \code{model} are created.  
+See the source code of \code{ffmanova} to see how \code{D} and  \code{model} are created.
 }
 
 \value{
 \item{df_error}{degrees of freedom for error}
 \item{D}{same as input}
-\item{D_test}{as D, but with Type II* adjusted model terms. Will be used for testing.}
-\item{D_om}{as D, but with OM-adjusted model terms. This is a non-overparameterised representation of the model. Will be used for prediction.}
+\item{D_test}{as \code{D}, but with Type II* adjusted model terms. Will be used for testing.}
+\item{D_om}{as \code{D}, but with OM-adjusted model terms. This is a non-overparameterised representation of the model. Will be used for prediction.}
 \item{df_D_om}{degrees of freedom according to \code{D_om}}
 \item{df_D_test}{degrees of freedom according to \code{D_test}}
 \item{Beta_D}{output from \code{linregEst} where \code{D_om} is response and where \code{D} is regressor}
@@ -38,8 +38,8 @@ See \code{ffmanova.R} to see how \code{D} and  \code{model} are created.
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 
 \seealso{ 
-   code{\link{linregEst}},
-   code{\link{xy_Obj}}.
+  \code{\link{linregEst}},
+  \code{\link{xy_Obj}}.
 }
 
 \keyword{models}

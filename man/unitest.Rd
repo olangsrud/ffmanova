@@ -7,7 +7,7 @@
 \title{Univariate F or t testing}
 
 \description{
-The functions perform F or t testing for several responses based on a matrix of hypothesis observations and a matrix of error observations. 
+The functions perform \eqn{F} or \eqn{t} testing for several responses based on a matrix of hypothesis observations and a matrix of error observations. 
 }
 
 \usage{
@@ -24,7 +24,7 @@ unitests(xyObj)
 \details{
 \code{modelData} and \code{errorObs} correspond to \code{hypObs} and
 \code{errorObs} calculated by \code{xy_Obj}. These matrices are efficient representations of sums of squares and cross-products (see \code{\link{xy_Obj}} for details). 
-This means the univariate F-statistics can be calculated straightforwardly from these input matrices. Furthermore, in the single-degree-of-freedom case, t-statistics with correct sign can be obtained. 
+This means the univariate \eqn{F}-statistics can be calculated straightforwardly from these input matrices. Furthermore, in the single-degree-of-freedom case, \eqn{t}-statistics with correct sign can be obtained. 
 
   \code{unitests} is a wrapper function that calls
   \code{unitest} for each term in the \code{xyObj} (see
@@ -38,9 +38,9 @@ This means the univariate F-statistics can be calculated straightforwardly from 
   \item{stat}{The test statistics as \eqn{t}-statistics (when single degree of freedom) or \eqn{F}-statistics }
 
   \code{unitests} returns a list with components
-  \item{pRaw}{Matrix of \eqn{p}-values from \code{uniTest}, one row for
+  \item{pRaw}{Matrix of \eqn{p}-values from \code{unitest}, one row for
     each term.}
-  \item{stat}{Matrix of test statistics from \code{uniTest}, one row for
+  \item{stat}{Matrix of test statistics from \code{unitest}, one row for
     each term.}
 }
 
@@ -49,8 +49,5 @@ This means the univariate F-statistics can be calculated straightforwardly from 
 \note{The function calculates the \eqn{p}-values by making a call to \code{pf}.}
 
 \seealso{\code{\link{rotationtest}}, \code{\link{rotationtests}}}
-
-%\examples{
-%}
 
 \keyword{htest}

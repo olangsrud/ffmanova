@@ -13,31 +13,28 @@
 
 \usage{
 myorth(X, tol_ = 1e-09)
-myrank(X,tol_ = 1e-9)
+myrank(X, tol_ = 1e-9)
 }
 
 \arguments{
-  \item{X}{}
+  \item{X}{numeric matrix.}
   \item{tol_}{tuning parameter for the rank.}
 }
 
-\details{The calculations are based on the singular value decomposition (\code{svd}). And \code{myrank(X)} is the number of singular values of \code{X} that are larger than \code{max(dim(X))*svd(x)$d[1]*tol_}.
+\details{The calculations are based on the singular value decomposition (\code{\link{svd}}). And \code{myrank(X)} is the number of singular values of \code{X} that are larger than \code{max(dim(X))*svd(x)$d[1]*tol_}.
 }
 
 \value{
-A matrix, whose columns form an orthonormal basis. Or a single number, which is the rank.
+  \code{myorth} returns a matrix, whose columns form an orthonormal
+  basis.
+
+  \code{myrank} returns a single number, which is the rank of \code{X}.
 }
-
-
-\references{ ~put references to the literature/web site here ~ }
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}
 
-\note{ In the special case where \code{X} has a single column, \code{myorth(X)} returns \code{c*X} where \code{c} is a positive constant. }
+\note{In the special case where \code{X} has a single column, \code{myorth(X)} returns \code{c*X} where \code{c} is a positive constant.}
 
-\seealso{ ~~objects to See Also as \code{\link{~~fun~~}}, ~~~ }
-
-\examples{ 
-}
+\seealso{\code{\link{svd}}}
 \keyword{array}
 \keyword{algebra}
