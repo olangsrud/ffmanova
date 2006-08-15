@@ -1,7 +1,8 @@
+### $Id$
 # %=============== linregStart.m ====================
 # %  [Umodel,Uerror,VmodelDivS,VextraDivS1] = linregStart(X)
 # %        performs the part of linregEst that can be done without knowing Y.
-# %        See linregEst.m for description.          
+# %        See linregEst.m for description.
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # % Copyright, Oyvind Langsrud, MATFORSK, 2005 %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -16,7 +17,7 @@
 # while S(r) < tol;
 #    r=r-1;
 # end
-# S=S(1:r); 
+# S=S(1:r);
 # Umodel = U(:,1:r);
 # %%%---%%%  Uerror = U(:,(r+1):nObs);
 # Vmodel = V(:,1:r);
@@ -30,9 +31,9 @@ nObs = nrow(X)
 svdX = svd(X,nv=ncol(X))
 r = length(svdX$d)
 tol = max(dim(X)) * svdX$d[1] * rank_lim
-while(svdX$d[r] < tol) 
+while(svdX$d[r] < tol)
    r=r-1
-S = matrix(svdX$d[1:r],1,r) # = S' i matlab   
+S = matrix(svdX$d[1:r],1,r) # = S' i matlab
 Umodel=svdX$u[,1:r,drop = FALSE]
 Vmodel=svdX$v[,1:r,drop = FALSE]
 VmodelDivS = Vmodel /  (matrix(1,nrow(Vmodel),1) %*% S)

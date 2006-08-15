@@ -1,3 +1,4 @@
+### $Id$
 # %=============== linregEst.m ====================
 # %  [BetaU,VmodelDivS,VextraDivS1,msError,errorObs,Yhat] = linregEst(X,Y)
 # %        performs multivariate multiple linear regression modelling: Y = XB + E
@@ -8,15 +9,15 @@
 # %        BetaU refers to model with Umodel instead of X
 # %        Prediction cannot (not estimable) be made if Xnew*VextraDivS1 is
 # %        nonzero.
-# %        -  Estimablity can be checked by 
+# %        -  Estimablity can be checked by
 # %              is_estimable(Xnew,VextraDivS1)
 # %        -  Predictions can be made by
 # %              Unew = Xnew * VmodelDivS;
 # %              Ypred = Unew*BetaU;
 # %              stdYpred = sqrt(sum(Unew .^ 2,2)*msError);
-# % Input: 
-# %       X(*,*) - Regressors 
-# %       Y(*,*) - Response 
+# % Input:
+# %       X(*,*) - Regressors
+# %       Y(*,*) - Response
 # %
 # % Output:
 # %     BetaU(*,*)       - Parameters in PCR model: Y=Umodel*BetaU + E
@@ -25,7 +26,7 @@
 # %     msError(1,*)     - msError for each response
 # %     errorObs(*,*)    - error observations (can be used in multivariate testing)
 # %     Yhat(*,*)        - fitted values
-# % 
+# %
 # % Note:
 # %     Only two lines of code:
 # %             [Umodel,VmodelDivS,VextraDivS1] = linregStart(X);

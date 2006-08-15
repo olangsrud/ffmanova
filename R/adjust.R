@@ -1,12 +1,13 @@
+### $Id$
 # %=============== adjust.m ====================
-# % File: adjust.m 
+# % File: adjust.m
 # %
-# % Call from Matlab:  
-# %     Xadj = adjust(X,Y) 
+# % Call from Matlab:
+# %     Xadj = adjust(X,Y)
 # %
-# % Purpose: 
+# % Purpose:
 # %     X is "adjusted for Y"
-# %     The output matrix Xadj is an orthogonal 
+# %     The output matrix Xadj is an orthogonal
 # %     basis orthogonal to Y
 # %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,7 +15,7 @@
 # % Oyvind Langsrud, MATFORSK  %
 # % 2001                       %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# function Xadj = adjust(X,Y) 
+# function Xadj = adjust(X,Y)
 # orthY = myorth(Y);
 # orthX = myorth(X);
 # Xadj = X(:,[]);
@@ -24,11 +25,11 @@
 # end;
 # Xadj = myorth(orthX - orthY*(orthY'*orthX));
 ##########################################################
-adjust = function(X,Y){ 
+adjust = function(X,Y){
 orthY = myorth(Y)
 orthX = myorth(X)
 rankXadj = myrank(cbind(orthX,orthY)) - dim(orthY)[2]
 if(rankXadj==0)
-   return(X[,numeric(0),drop = FALSE]) 
+   return(X[,numeric(0),drop = FALSE])
 Xadj = myorth(orthX - (orthY%*%(t(orthY)%*%orthX)))
 }# end adjust

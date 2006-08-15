@@ -1,3 +1,4 @@
+### $Id$
 # %=============== rotationtest.m ====================
 # % [pAdjusted,pAdjFDR,simN] = rotationtest(modelData,errorData,simN)
 # %     calculates adjusted p-values by rotation testing.

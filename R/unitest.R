@@ -1,6 +1,7 @@
+### $Id$
 # %=============== uniTest.m ====================
 # % [pValues,stat] = uniTest(modelData,errorData,dfError)
-# %     calculates univariate F or t (when DF=1) statistics and 
+# %     calculates univariate F or t (when DF=1) statistics and
 # %     and corresponding p-values.
 # %
 # %     dfError needed if errordata is incomplete (rows of zeros)
@@ -45,7 +46,7 @@ if(dfModel==1){ # t-stat
     stat = modelData /  sqrt(errorSS/dfError);
     Fstat = stat^2;
 }else{ # F-stat
-    modelSS = colSums(modelData^2) 
+    modelSS = colSums(modelData^2)
     stat=(dfError/dfModel) * (modelSS / errorSS);
     Fstat = stat;
  }#end

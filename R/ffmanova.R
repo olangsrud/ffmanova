@@ -138,7 +138,6 @@ ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
     Y <- as.matrix(model.response(mf, "numeric"))
     if (stand) Y <- stdize(Y, center = FALSE, avoid.zero.divisor = TRUE)
 
-    ## META: taken from modelData()
     ## Create a `fator/term index matrix':
     mOld = attr(mt, "factors")
     ## Fix any I() terms:
@@ -148,17 +147,13 @@ ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
     ## transpose
     model = t(mNew)
 
-    ## META: taken from modelData()
     ## Split the model matrix into matrices for each term:
     termNr = attr(mm, "assign") + 1
     D = vector("list", max(termNr))
     for (i in seq(along = D))
         D[[i]] <- mm[,termNr == i, drop = FALSE]
 
-    ## META: Hva gjør denne?  Den brukes bare her.
     xObj <- x_Obj(D, model)
-
-    ## META: Hva gjør denne?  Den brukes bare her.
     xyObj = xy_Obj(xObj, Y)
 
     nTerms = length(xyObj$xObj$df_D_test)

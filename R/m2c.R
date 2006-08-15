@@ -1,3 +1,4 @@
+### $Id$
 # %=============== m2c.m ====================
 # % C = m2c(M,df)
 # %    partition M into a cell array C
@@ -6,10 +7,10 @@
 # %           M(*,*)  -  ordinary unpartitioned matrix
 # %           df(1,*) -  number of columns in the cells of C
 # %                      default: [1 1 1 ....]
-# %   Output: 
+# %   Output:
 # %           C{1,*}  -  M partitioned into a cell array
 # %
-# %   See also: c2m, c2df 
+# %   See also: c2m, c2df
 # %
 # function C = m2c(M,df)
 # if nargin < 2
@@ -17,7 +18,7 @@
 # end
 # C=cell(1,length(df));
 # k=0;
-# for i=1:length(df) 
+# for i=1:length(df)
 #     C{i} = M(:,(k+1):(k+df(i)));
 #     k=k+df(i);
 # end
@@ -26,7 +27,7 @@ m2c = function(M,df=rep(1,dim(M)[2])){
 CC = vector("list",length(df))
 k=0
 for(i in 1:length(df)){
-      CC[[i]] = M[,matlabColon(k+1,k+df[i]),drop = FALSE]; 
+      CC[[i]] = M[,matlabColon(k+1,k+df[i]),drop = FALSE];
       k=k+df[i];
    } # end
 CC

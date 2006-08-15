@@ -1,3 +1,4 @@
+### $Id$
 # %=============== myorth.m ====================
 # % U = myorth(X)
 # %     Modified version of orth
@@ -9,7 +10,7 @@
 # function U = myorth(X)
 # tol_ = 1e-9;   %%% !! hard coded constant !! %%%
 # if size(X,2)==0
-#    U=X; 
+#    U=X;
 #    return;
 # end
 # [U,S,V] = economySVD(X);
@@ -28,21 +29,21 @@
 # end
 #############################################################
 myorth = function(X,tol_ = 1e-9){
-if(dim(X)[2]==0) 
+if(dim(X)[2]==0)
    return(X)
-U = svd(X,nv=0)   
-S = U$d  
+U = svd(X,nv=0)
+S = U$d
 U = U$u
 r = length(S)
 # meanS = mean(S); hvorfor var denne med ?????
 tol = max(dim(X)) * S[1] * tol_
 if(!tol)
    return(X[,numeric(0),drop=FALSE])
-while(S[r] < tol) 
+while(S[r] < tol)
    r=r-1
 U=U[,1:r,drop = FALSE]
-if(dim(U)[2] ==1 & dim(X)[2]==1 )    
-     if( (t(X)%*%U) <0)                
+if(dim(U)[2] ==1 & dim(X)[2]==1 )
+     if( (t(X)%*%U) <0)
         U = -U
 U
 }# end myorth

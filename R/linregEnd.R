@@ -1,7 +1,8 @@
+### $Id$
 # %=============== linregEnd.m ====================
 # %  [BetaU,msError,errorObs,Yhat] = linregEnd(Umodel,Y)
 # %        performs the part of linregEst that is not performed by linregStart.
-# %        See linregEst.m for description.          
+# %        See linregEst.m for description.
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # % Copyright, Oyvind Langsrud, MATFORSK, 2005 %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
