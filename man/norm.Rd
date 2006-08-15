@@ -7,7 +7,7 @@
 
 \description{
   \code{norm(X)} returns the largest singular value of \code{X}; it is
-  eqivalent to \code{svd(X, nu = 0, nv = 0)$d[1]}.
+  equivalent to \code{svd(X, nu = 0, nv = 0)$d[1]}.
 }
 \usage{
 norm(X)

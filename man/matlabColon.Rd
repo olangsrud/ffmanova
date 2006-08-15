@@ -15,7 +15,7 @@ matlabColon(from, to)
 }
 \details{
   \code{matlabCode(a,b)} returns \code{a:b} (\R's version) unless \code{a
-    < b}, in which case it returns \code{numeric(0)}.
+    > b}, in which case it returns \code{numeric(0)}.
 }
 \value{
   A numeric vector, possibly empty.
