@@ -45,11 +45,11 @@ rotationtests(xyObj, nSim, verbose = TRUE)
 \references{ 
 Langsrud, Ø. (2005) 
 Rotation Tests.
-\emph{Statistics and Computing},\bold{15}, 53--60. 
+\emph{Statistics and Computing}, \bold{15}, 53--60. 
 
 Moen, B., Oust, A., Langsrud, Ø., Dorrell, N., Gemma, L., Marsden, G.L., Hinds, J., Kohler, A., Wren, B.W. and Rudi, K. (2005) 
 An explorative multifactor approach for investigating global survival mechanisms of Campylobacter jejuni under environmental conditions. 
-\emph{Applied and Environmental Microbiology},\bold{71}, 2086-2094.
+\emph{Applied and Environmental Microbiology}, \bold{71}, 2086-2094.
 }
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}

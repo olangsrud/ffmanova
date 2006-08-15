@@ -37,7 +37,7 @@ A list with components
 \references{
 Langsrud, Ø. (2002) 
 Rotation Tests.
-\emph{The Statistician},\bold{51}, 305--317. 
+\emph{The Statistician}, \bold{51}, 305--317. 
 }
 
 \author{Øyvind Langsrud and Bjørn-Helge Mevik}

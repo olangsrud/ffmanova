@@ -7,7 +7,7 @@
 
 \description{
   This is simply a wrapper around \code{\link{pf}}: \code{my_pValueF(f,
-    ny1, ny2)} is eqivalent to \code{pf(f, ny1, ny2, lower.tail = FALSE)}.
+    ny1, ny2)} is equivalent to \code{pf(f, ny1, ny2, lower.tail = FALSE)}.
 }
 
 \usage{
