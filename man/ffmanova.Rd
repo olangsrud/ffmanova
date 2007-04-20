@@ -4,13 +4,13 @@
 \alias{ffmanova}
 \title{Fifty-fifty MANOVA}
 \description{
-General linear modeling of fixed-effects models with multiple responses is performed. The function calculates 50-50 MANOVA \eqn{p}-values, ordinary univariate \eqn{p}-values and adjusted \eqn{p}-values using rotation testing.
+General linear modeling with multiple responses is performed. The function calculates 50-50 MANOVA \eqn{p}-values, ordinary univariate \eqn{p}-values and adjusted \eqn{p}-values using rotation testing.
 }
 \usage{
 ffmanova(formula, data, stand = TRUE, nSim = 0, verbose = TRUE)
 }
 \arguments{
-  \item{formula}{Model formula.  See Details.}
+  \item{formula}{Model formula.}
   \item{data}{Data frame with model data.}
   \item{stand}{Logical. Standardization of responses. This option has effect on the 50-50 MANOVA testing and the calculation of \code{exVarSS}.}
   \item{nSim}{nonnegative integer. The number of simulations to use in the rotation tests. Can be a single nonnegative integer or a list of values for each term.}
@@ -19,10 +19,6 @@ ffmanova(formula, data, stand = TRUE, nSim = 0, verbose = TRUE)
 }
 
 \details{
-The model is specified with \code{formula}, in the same way as in
-\code{lm} (except that offsets are not supported).  See \code{\link{lm}}
-for details.
-
 An overall \eqn{p}-value for all responses is calculated for each model term. This is done using the 50-50 MANOVA method, which is a modified variant of classical MANOVA made to handle several highly correlated responses. 
 
 Ordinary single response \eqn{p}-values are produced. By using rotation testing these can be adjusted for multiplicity according to familywise error rates or false discovery rates. Rotation testing is a Monte Carlo simulation framework for doing exact significance testing under multivariate normality. The number of simulation repetitions (\code{nSim}) must be chosen.
