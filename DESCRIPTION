@@ -1,8 +1,8 @@
 Package: ffmanova
 Type: Package
 Title: Fifty-fifty MANOVA
-Version: 0.1-0
-Date: 2006-08-15
+Version: 0.1-1
+Date: 2007-04-20
 Author: Øyvind Langsrud and Bjørn-Helge Mevik
 Maintainer: Bjørn-Helge Mevik and Øyvind Langsrud <ffmanova@mevik.net>
 Encoding: latin1
