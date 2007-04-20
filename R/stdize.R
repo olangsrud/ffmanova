@@ -1,5 +1,5 @@
 ### stdize.R: center and scale a matrix.
-### By Bjørn-Helge Mevik
+### By Bjoern-Helge Mevik
 ### $Id$
 
 stdize <- function(x, center = TRUE, scale = TRUE, avoid.zero.divisor = FALSE) {

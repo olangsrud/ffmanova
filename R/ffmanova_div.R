@@ -2,7 +2,7 @@
 
 
 matlabColon <- function(from, to) { if(from > to) numeric(0) else from:to }
-# Author:: Bjørn-Helge Mevik
+# Author:: Bjoern-Helge Mevik
 
 
 norm = function(X){

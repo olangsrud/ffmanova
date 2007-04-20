@@ -51,7 +51,7 @@
 #     dfError = errorData{2};
 #     errorData = errorData{1};
 #     nZeroRows = dfError-size(errorData,1);
-#     %%% errorData = [errorData´ zeros(size(errorData,2),nZeroRows)]´;
+#     %%% errorData = [errorData' zeros(size(errorData,2),nZeroRows)]';
 #     min_nZeroRows = size(errorData,2) - size(errorData,1);
 #     min_nZeroRows = min(min_nZeroRows,nZeroRows);
 #     if(min_nZeroRows>0)

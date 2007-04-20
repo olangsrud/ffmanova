@@ -53,7 +53,7 @@
 # %errorData = xyObj.errorObs;
 # for i=1:nTerms
 #    modelData = xyObj.hypObs{i};
-#    %if(normY < 1e-250 | norm([errorData´,modelData´])/normY < 1e-12)% Singularity problems
+#    %if(normY < 1e-250 | norm([errorData',modelData'])/normY < 1e-12)% Singularity problems
 #    %   [exVar1_,exVar2_,dim_,dimX_,dimY_,bufferDim_,D_,E_,A_,M_,pD_,pE_,pA_,pM_] = ...
 #    %      ffmanovatest(modelData(:,[]),errorData(:,[]),part,partBufDim,minBufDim, ...
 #    %      maxBufDim,minErrDf,cp,stand);
@@ -89,7 +89,7 @@
 #     outputText=[];
 #     outputText=outLine(outputText,sprintf('  --- 50-50 MANOVA Version 2.0 --- %d objects -- %d responses:',size(Y,1),size(Y,2)));
 #     approx = 0;
-#     %names = strvcat(strvcat(results.termNames),´Source´); % Changed - Octave
+#     %names = strvcat(strvcat(results.termNames),'Source'); % Changed - Octave
 #     names = '';
 #     for i=1:length(results.termNames)
 #         names = strvcat(names,results.termNames{i});

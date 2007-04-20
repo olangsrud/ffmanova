@@ -9,7 +9,7 @@
 # %       a character matrix (each row representing a group name),
 # %       or a cell array of strings stored as a column vector.
 # %    Nonzero elements of cova(1,*) indicate cells of X that are covariates.
-# %    Multiple columns (several DF´s) of covariate model terms are allowed.
+# %    Multiple columns (several DF's) of covariate model terms are allowed.
 # %    names{1,*} contain the factor names.
 # %    Model example: Xinput = {A B C}
 # %         model = [ 0 0 0 ; 1 0 0; 0 1 0 ; 0 0 1; 2 0 0; 1 1 0; 1 0 1; 0 1 1; 3 0 0]
@@ -76,7 +76,7 @@
 # end
 # D = my_x2fx(X_norm,model);
 # % Make Type~II*-adjusted and OM-adjusted model matrix
-# %D_test = orth_D(D,model,´test´);
+# %D_test = orth_D(D,model,'test');
 # D_om   = orth_D(D,model,'om');
 # D_test = orth_D(D_om,model,'test');  % More stable computation with D_om as input ?
 # [D_om_,df_D_om] = c2m(D_om);
@@ -108,10 +108,10 @@
 # xObj.VmodelDivS = VmodelDivS;
 # xObj.VextraDivS1 = VextraDivS1;
 ##############################################################
-# Lages (foreløpig) en funksjon som tar D som input (ikke Xinput)
+# Lages (foreloepig) en funksjon som tar D som input (ikke Xinput)
 x_Obj = function(D,model){
 # % Make Type~II*-adjusted and OM-adjusted model matrix
-# %D_test = orth_D(D,model,´test´);
+# %D_test = orth_D(D,model,'test');
 D_om   = orth_D(D,model,'om')
 D_test = orth_D(D_om,model,'test'); #% More stable computation with D_om as input ?
 D_om_  = c2m(D_om)
@@ -130,7 +130,7 @@ VextraDivS1_D = linregEst_$VextraDivS1
 # %%%---%%% xObj.df_error = size(Uerror,2);
 # [Umodel,VmodelDivS,VextraDivS1] = linregStart(D_om_);
 xObj2 = linregStart(D_om_)
-# nVar ikke med på lista
+# nVar ikke med paa lista
 xObj1 = list(df_error = nrow(xObj2$Umodel) - ncol(xObj2$Umodel),
   D=D,
   D_test = D_test,
@@ -149,10 +149,10 @@ c(xObj1,xObj2)
 
 # % Dorth = orth_D(D,model,method)
 # %    Adjusts/orthogonalizes model matrix D{1,*} according to
-# %    method = ´test´ (Type II* testing)
-# %             ´seq´  (Type I testing)
-# %             ´om´   (adjusts according to model hierarchy)
-# %          ´ssIII´   (Type III* testinng - dependes on parameterization )
+# %    method = 'test' (Type II* testing)
+# %             'seq'  (Type I testing)
+# %             'om'   (adjusts according to model hierarchy)
+# %          'ssIII'   (Type III* testinng - dependes on parameterization )
 # %   D and model is on the form described in x_Obj.m
 # function Dorth = orth_D(D,model,method)
 # Dorth = cell(1,size(model,1));
@@ -194,7 +194,7 @@ for(i in 1:nrow(model)){
    d = D[[i]]
    d_adj = d[,numeric(0)]
    for(j in 1:nrow(model)){
-      switch(method, # Bare lagt inn "test" og "om" forløpig
+      switch(method, # Bare lagt inn "test" og "om" forloepig
          test = {if(min( model[j,] - model[i,]) < 0 ) d_adj = cbind(d_adj,D[[j]])},
           om  = {if( (min( model[j,] - model[i,]) < 0 )  &  (max( model[j,] - model[i,]) <= 0) ) d_adj = cbind(d_adj,D[[j]])})
          #seq  =,

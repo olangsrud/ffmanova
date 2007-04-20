@@ -28,7 +28,7 @@
 #     stat=(dfError/dfModel) * (modelSS ./ errorSS);
 #     Fstat = stat;
 # end
-# %%%  pValues = 1 - cdf(´F´,Fstat,dfModel,dfError);
+# %%%  pValues = 1 - cdf('F',Fstat,dfModel,dfError);
 # pValues =my_pValueF_(Fstat,dfModel,dfError);
 # function pValue = my_pValueF_(f,ny1,ny2)
 #      pValue = betainc(ny2*((ny2+ny1*f).^(-1)),ny2/2,ny1/2);

@@ -82,7 +82,7 @@
 # i=0;
 # while(i<simN)
 #     i=i+1;
-#     %%%---%%%  Z = Xs´ * Ys;
+#     %%%---%%%  Z = Xs' * Ys;
 #     if(repsim)
 #         if(repindex==0)
 #             [Xs,r]=qr(randn(sizeX),0);
@@ -93,7 +93,7 @@
 #         [Xs,r]=qr(randn(sizeX),0);
 #         Z = Xs(1:dfT_,:)' * Ys;
 #     end
-#     sss=sum(Z.*Z,1); %for(j=1:q) sss(j)= Z(:,j)´ * Z(:,j); end
+#     sss=sum(Z.*Z,1); %for(j=1:q) sss(j)= Z(:,j)' * Z(:,j); end
 #     maxss=0;
 #     for j=1:q
 #         maxss=max(maxss,sss(j));
@@ -257,7 +257,7 @@ while(i<simN){
        }#end
     #end
     #%%%%%% END display part %%%%%%%%%
-    i=i+1; #%%%---%%%  Z = Xs´ * Ys;
+    i=i+1; #%%%---%%%  Z = Xs' * Ys;
     if(repsim){
         if(repindex==0)
             Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1), LAPACK = TRUE))
@@ -273,7 +273,7 @@ while(i<simN){
 
 
 
-    sss_cummax = cummax(sss)            ### to linjer erstatter løkke nedefor
+    sss_cummax = cummax(sss)            ### to linjer erstatter loekke nedefor
     m = m + as.numeric(sss_cummax>ss)   ### ikke cummax i matlab
 
     #maxss=0;
@@ -286,7 +286,7 @@ while(i<simN){
 
     #%%%%% Start FDR calc
 
-    ## Denne er overflødig:
+    ## Denne er overfloedig:
     ##sss = sort(sss)
     o2 = order(c(ss,sss))
     plassering = (1:(2*q))[o2<=q]

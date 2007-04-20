@@ -9,7 +9,7 @@
 # function [BetaU,msError,errorObs,Yhat] = linregEnd(Umodel,Y)
 # BetaU = Umodel'*Y;
 # Yhat = Umodel*BetaU;
-# %%%---%%%  errorObs = Uerror´*Y;
+# %%%---%%%  errorObs = Uerror'*Y;
 # [U S V] = economySVD(Y-Yhat);
 # df_error = size(Umodel,1) - size(Umodel,2);
 # errorObs = S*V'; %%%% smartere beregning her???

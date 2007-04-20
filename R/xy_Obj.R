@@ -11,7 +11,7 @@
 # %   yNames{*,1}: same as input
 # %     ssTotFull: = sum(sum(Y.^2));
 # %         ssTot: = sum(sum(center(Y).^2));
-# %           ss: ss´s summed over all responses
+# %           ss: ss's summed over all responses
 # %         Beta: regr model: Y = D_om*Beta  (see linregEst)
 # %         Yhat: fitted values
 # %      YhatStd: stds of fitted values
