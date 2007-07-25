@@ -1,0 +1,11 @@
+## exported symbols
+export(ffmanova)
+## maybe (they have examples):
+export(fixModelMatrix, matlabColon, stdize)
+
+## exported methods
+S3method(print, ffmanova)
+
+## imported packages/symbols
+##import()
+##importFrom()
