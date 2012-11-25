@@ -1,0 +1,39 @@
+## $Id$
+## Exported functions:
+export(
+       adjust,
+       ffmanova,
+       ffmanovatest,
+       fixModelMatrix,
+       linregEst,
+       linregStart,
+       linregEnd,
+       m2c,
+       c2m,
+       c2df,
+       manova5050,
+       matlabColon,
+       multiPvalues,
+       multiStatistics,
+       myorth,
+       myrank,
+       my_pValueF,
+       norm,
+       orth_D,
+       print.ffmanova,
+       rotationtest,
+       rotationtests,
+       stdize,
+       unitest,
+       unitests,
+       x_Obj,
+       xy_Obj
+       )
+
+## Imports:
+#importFrom(package, func, func, ...)
+
+## S3 Methods:
+S3method(print, ffmanova)
+
+## Documented, but not exported:
