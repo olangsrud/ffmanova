@@ -5,7 +5,7 @@
 \title{Computation of 50-50 MANOVA results}
 
 \description{
-The function takes a design-with-responses object created by \code{xy_Obj} and produces 50-50 MANOVA output. Results are produced for each term in the model.}
+The function takes a design-with-responses object created by \code{xy_Obj} and produces 50-50 MANOVA output. Results are produced for each term in the model.
 }
 
 \usage{
