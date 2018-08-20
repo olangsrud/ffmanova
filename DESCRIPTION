@@ -1,14 +1,16 @@
 Package: ffmanova
 Type: Package
 Title: Fifty-fifty MANOVA
-Version: 0.2-2
-Date: 2012-11-28
-Author: Øyvind Langsrud and Bjørn-Helge Mevik
-Maintainer: Bjørn-Helge Mevik <ffmanova@mevik.net>
-Encoding: latin1
-Description: This package performs general linear modeling with multiple
- responses (MANCOVA).  An overall p-value for each model term is calculated
- by the 50-50 MANOVA method, which handles collinear responses.  Rotation
- testing is used to compute adjusted single response p-values according to
- familywise error rates and false discovery rates.
+Version: 0.2-3
+Date: 2018-08-20
+Author: Ã˜yvind Langsrud and BjÃ¸rn-Helge Mevik
+Maintainer: BjÃ¸rn-Helge Mevik <ffmanova@mevik.net>
+Encoding: UTF-8
+Description: This package performs general linear modeling with
+        multiple responses (MANCOVA).  An overall p-value for each
+        model term is calculated by the 50-50 MANOVA method, which
+        handles collinear responses.  Rotation testing is used to
+        compute adjusted single response p-values according to
+        familywise error rates and false discovery rates.
 License: GPL-2
+RoxygenNote: 6.0.1

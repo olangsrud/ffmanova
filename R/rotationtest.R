@@ -1,4 +1,3 @@
-### $Id$
 # %=============== rotationtest.m ====================
 # % [pAdjusted,pAdjFDR,simN] = rotationtest(modelData,errorData,simN)
 # %     calculates adjusted p-values by rotation testing.
@@ -189,6 +188,53 @@
 # pAdjFDR = sortrows([pAdjFDR' sortindex'],2);
 # pAdjFDR = (pAdjFDR(:,1))';
 ####################################################################
+
+
+#' Rotation testing
+#' 
+#' The functions perform rotation testing based on a matrix of hypothesis
+#' observations and a matrix of error observations. Adjusted \eqn{p}-values
+#' according to familywise error rates and false discovery rates are
+#' calculated.
+#' 
+#' \code{modelData} and \code{errorObs} correspond to \code{hypObs} and
+#' \code{errorObs} calculated by \code{xy_Obj}. These matrices are efficient
+#' representations of sums of squares and cross-products (see
+#' \code{\link{xy_Obj}} for details). This means that \code{rotationtest} can
+#' be viewed as a generalised \eqn{F}-test function.
+#' 
+#' \code{rotationtests} is a wrapper function that calls \code{rotationtest}
+#' for each term in the \code{xyObj} and collects the results.
+#' 
+#' @aliases rotationtest rotationtests
+#' @param modelData matrix of hypothesis observations
+#' @param errorData matrix of error observations
+#' @param simN Number of simulations for each test. Can be a single value or a
+#' list of values for each term.
+#' @param dfE Degrees of freedom for error needs to be specified if
+#' \code{errorData} is incomplete
+#' @param dispsim When \code{TRUE}, dots are displayed to illustrate simulation
+#' progress.
+#' @param xyObj a design-with-responses object created by \code{\link{xy_Obj}}
+#' @param nSim vector of nonnegative integers.  The number of simulations to
+#' use for each term.
+#' @param verbose logical.  Whether \code{rotationtests} (and
+#' \code{rotationtest}) should be verbose.
+#' @return Both functions return a list with components
+#' \item{pAdjusted}{adjusted \eqn{p}-values according to familywise error
+#' rates} \item{pAdjFDR}{adjusted \eqn{p}-values according to false discovery
+#' rates} \item{simN}{number of simulations performed for each term}
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @seealso \code{\link{unitest}}, \code{\link{unitests}}
+#' @references Langsrud, Ø. (2005) Rotation Tests. \emph{Statistics and
+#' Computing}, \bold{15}, 53--60.
+#' 
+#' Moen, B., Oust, A., Langsrud, Ø., Dorrell, N., Gemma, L., Marsden, G.L.,
+#' Hinds, J., Kohler, A., Wren, B.W. and Rudi, K. (2005) An explorative
+#' multifactor approach for investigating global survival mechanisms of
+#' Campylobacter jejuni under environmental conditions.  \emph{Applied and
+#' Environmental Microbiology}, \bold{71}, 2086-2094.
+#' @keywords htest
 rotationtest = function(modelData,errorData,simN=999,dfE=-1,dispsim = TRUE){
 ## Dirty hack; maybe do something more clever/faster when simN == 0?
 if (simN == 0) dispsim <- FALSE

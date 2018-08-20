@@ -1,4 +1,3 @@
-### $Id$
 # %=============== x_Obj.m ====================
 # %  xObj = x_Obj(Xinput,cova,model,names)
 # %    Transforms a matrix of factor setting inputs, Xinput{1,*},
@@ -109,6 +108,32 @@
 # xObj.VextraDivS1 = VextraDivS1;
 ##############################################################
 # Lages (foreloepig) en funksjon som tar D som input (ikke Xinput)
+
+
+#' Creation of a design matrix object
+#' 
+#' The function takes design/model information as input and performs initial
+#' computations for prediction and testing.
+#' 
+#' See the source code of \code{ffmanova} to see how \code{D} and \code{model}
+#' are created.
+#' 
+#' @param D A list containing a regressor matrix for each model term
+#' @param model The model coded as a matrix
+#' @return \item{df_error}{degrees of freedom for error} \item{D}{same as
+#' input} \item{D_test}{as \code{D}, but with Type II* adjusted model terms.
+#' Will be used for testing.} \item{D_om}{as \code{D}, but with OM-adjusted
+#' model terms. This is a non-overparameterised representation of the model.
+#' Will be used for prediction.} \item{df_D_om}{degrees of freedom according to
+#' \code{D_om}} \item{df_D_test}{degrees of freedom according to \code{D_test}}
+#' \item{Beta_D}{output from \code{linregEst} where \code{D_om} is response and
+#' where \code{D} is regressor} \item{VmodelDivS_D}{as above}
+#' \item{VextraDivS1_D}{as above} \item{Umodel}{output from \code{linregStart}
+#' where \code{D_om} is regressor} \item{VmodelDivS}{as above}
+#' \item{VextraDivS1}{as above} \item{termNames}{model term names}
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @seealso \code{\link{linregEst}}, \code{\link{xy_Obj}}.
+#' @keywords models design
 x_Obj = function(D,model){
 # % Make Type~II*-adjusted and OM-adjusted model matrix
 # %D_test = orth_D(D,model,'test');
@@ -185,6 +210,24 @@ c(xObj1,xObj2)
 #     Dorth{i} =  adjust(d,d_adj);
 # end
 ####################################################
+
+
+#' Making adjusted design matrix data
+#' 
+#' The function takes the output from \code{modelData} as input and calculates
+#' adjusted data
+#' 
+#' The \code{"test"} method adjusts data according to Type II* sums of squares.
+#' This is an extension of the traditional Type II method. The \code{"om"}
+#' method orthogonalises terms according to the model hierarchy. The result is
+#' a non-overparameterised representation of the model.
+#' 
+#' @param D A list containing a regressor matrix for each model term
+#' @param model The model coded as a matrix
+#' @param method Either \code{"test"} or \code{"om"}
+#' @return An adjusted version of \code{D} is returned.
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @keywords models design
 orth_D = function(D,model,method){
 Dorth = vector("list",nrow(model))
 if(length(D)!= nrow(model))

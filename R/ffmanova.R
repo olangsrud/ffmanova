@@ -1,4 +1,3 @@
-### $Id$
 # %=============== ffmanova.m ====================
 # %  results = ffmanova(X,Y,cova,model,xNames,stand,nSim,Xnew)
 # %     or    results = ffmanova(modelFormula,stand,nSim,Xnew)
@@ -120,6 +119,137 @@
 
 # Xnew as input is not implemented in R
 
+
+
+#' Fifty-fifty MANOVA
+#' 
+#' General linear modeling of fixed-effects models with multiple responses is
+#' performed. The function calculates 50-50 MANOVA \eqn{p}-values, ordinary
+#' univariate \eqn{p}-values and adjusted \eqn{p}-values using rotation
+#' testing.
+#' 
+#' The model is specified with \code{formula}, in the same way as in \code{lm}
+#' (except that offsets are not supported).  See \code{\link{lm}} for details.
+#' 
+#' An overall \eqn{p}-value for all responses is calculated for each model
+#' term. This is done using the 50-50 MANOVA method, which is a modified
+#' variant of classical MANOVA made to handle several highly correlated
+#' responses.
+#' 
+#' Ordinary single response \eqn{p}-values are produced. By using rotation
+#' testing these can be adjusted for multiplicity according to familywise error
+#' rates or false discovery rates. Rotation testing is a Monte Carlo simulation
+#' framework for doing exact significance testing under multivariate normality.
+#' The number of simulation repetitions (\code{nSim}) must be chosen.
+#' 
+#' Unbalance is handled by a variant of Type II sums of squares, which has
+#' several nice properties: \enumerate{ \item Invariant to ordering of the
+#' model terms.  \item Invariant to scale changes.  \item Invariant to how the
+#' overparameterization problem of categorical variable models is solved (how
+#' constraints are defined).  \item Whether two-level factors are defined to be
+#' continuos or categorical does not influence the results.  \item Analysis of
+#' a polynomial model with a single experimental variable produce results
+#' equivalent to the results using an orthogonal polynomial.  } In addition to
+#' significance testing an explained variance measure, which is based on sums
+#' of sums of squares, is computed for each model term.
+#' 
+#' @param formula Model formula.  See Details.
+#' @param data Data frame with model data.
+#' @param stand Logical. Standardization of responses. This option has effect
+#' on the 50-50 MANOVA testing and the calculation of \code{exVarSS}.
+#' @param nSim nonnegative integer. The number of simulations to use in the
+#' rotation tests. Can be a single nonnegative integer or a list of values for
+#' each term.
+#' @param verbose Logical.  If \code{TRUE}, the rotation tests print trace
+#' information.
+#' @return An object of class \code{"ffmanova"}, which consists of the
+#' concatenated results from the underlying functions \code{\link{manova5050}},
+#' \code{\link{rotationtests}} and \code{\link{unitests}}:
+#' 
+#' \item{termNames}{model term names} \item{exVarSS}{explained variances
+#' calculated from sums of squares summed over all responses} \item{df}{degrees
+#' of freedom - adjusted for other terms in model} \item{df_om}{degrees of
+#' freedom - adjusted for terms contained in actual term} \item{nPC}{number of
+#' principal components used for testing} \item{nBU}{number of principal
+#' components used as buffer components} \item{exVarPC}{variance explained by
+#' \code{nPC} components} \item{exVarBU}{variance explained by \code{(nPC+nBU)}
+#' components} \item{pValues}{50-50 MANOVA \eqn{p}-values}
+#' \item{stand}{logical.  Whether the responses are standardised.}
+#' \item{stat}{The test statistics as \eqn{t}-statistics (when single degree of
+#' freedom) or \eqn{F}-statistics } \item{pRaw}{matrix of ordinary
+#' \eqn{p}-values from F- or t-testing} \item{pAdjusted}{matrix of adjusted
+#' \eqn{p}-values according to familywise error rates} \item{pAdjFDR}{matrix of
+#' adjusted \eqn{p}-values according to false discovery rates}
+#' \item{simN}{number of simulations performed for each term (same as input)}
+#' The matrices \code{stat}, \code{pRaw}, \code{pAdjusted} and \code{pAdjFDR}
+#' have one row for each model term and one column for each response.
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @seealso \code{\link{manova5050}}, \code{\link{rotationtests}} and
+#' \code{\link{unitests}}; the work horse functions.
+#' @references Langsrud, Ø. (2002) 50-50 Multivariate Analysis of Variance for
+#' Collinear Responses. \emph{The Statistician}, \bold{51}, 305--317.
+#' 
+#' Langsrud, Ø. (2003) ANOVA for Unbalanced Data: Use Type II Instead of Type
+#' III Sums of Squares. \emph{Statistics and Computing}, \bold{13}, 163--167.
+#' 
+#' Langsrud, Ø. (2005) Rotation Tests. \emph{Statistics and Computing},
+#' \bold{15}, 53--60.
+#' 
+#' Moen, B., Oust, A., Langsrud, Ø., Dorrell, N., Gemma, L., Marsden, G.L.,
+#' Hinds, J., Kohler, A., Wren, B.W. and Rudi, K. (2005) An explorative
+#' multifactor approach for investigating global survival mechanisms of
+#' Campylobacter jejuni under environmental conditions.  \emph{Applied and
+#' Environmental Microbiology}, \bold{71}, 2086-2094.
+#' 
+#' See also \url{http://www.matforsk.no/ola/}.
+#' @keywords models design multivariate
+#' @export
+#' @examples
+#' 
+#' data(dressing)
+#' 
+#' # An ANOVA model with all design variables as factors 
+#' # and with visc as the only response variable.
+#' # Classical univariate Type II test results are produced.
+#' ffmanova(visc ~ (factor(press) + factor(stab) + factor(emul))^2 + day,
+#'          data = dressing) 
+#' 
+#' # A second order response surface model with day as a block factor. 
+#' # The properties of the extended Type II approach is utilized. 
+#' ffmanova(visc ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,
+#'          data = dressing)
+#' 
+#' # 50-50 MANOVA results with the particle-volume curves as 
+#' # multivariate responses. The responses are not standardized.
+#' ffmanova(pvol ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,
+#'          stand = FALSE, data = dressing)
+#' 
+#' # 50-50 MANOVA results with 9 rheological responses (standardized).
+#' # 99 rotation simulation repetitions are performed. 
+#' res <- ffmanova(rheo ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,
+#'                 nSim = 99, data = dressing)
+#' res$pRaw      #  Unadjusted single responses p-values 
+#' res$pAdjusted #  Familywise error rate adjusted p-values 
+#' res$pAdjFDR   #  False discovery rate adjusted p-values
+#' 
+#' # As above, but this time 9999 rotation simulation repetitions 
+#' # are performed, but only for the model term stab^2. 
+#' res <- ffmanova(rheo ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,
+#'                 nSim = c(0,0,0,0,0,9999,0,0,0,0,0), data = dressing)
+#' res$pAdjusted[6,] # Familywise error rate adjusted p-values for stab^2
+#' res$pAdjFDR[6,]   # False discovery rate adjusted p-values for stab^2
+#' 
+#' # Note that the results of the first example above can also be 
+#' # obtained by using the car package.
+#' \dontrun{Anova(lm(visc ~ (factor(press) + factor(stab) + factor(emul))^2 + day,
+#'       data = dressing), type = "II")}
+#' 
+#' # The results of the second example differ because Anova does not recognise 
+#' # linear terms (emul) as being contained in quadratic terms (I(emul^2)).
+#' # A consequence here is that the clear significance of emul disappears.
+#' \dontrun{Anova(lm(visc ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,
+#'       data = dressing), type="II")}
+#' 
 ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
 
     ## Get the model frame.  META: This is unneccessary general for the
