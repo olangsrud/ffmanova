@@ -1,4 +1,4 @@
-### $Id$
+### $Id: adjust.R 45 2006-08-15 13:11:29Z bhm $
 # %=============== adjust.m ====================
 # % File: adjust.m
 # %
@@ -25,6 +25,21 @@
 # end;
 # Xadj = myorth(orthX - orthY*(orthY'*orthX));
 ##########################################################
+
+
+#' Adjust a predictor matrix for the presence of another matrix
+#' 
+#' \code{adjust} adjusts a predictor matrix \eqn{X} for the presence of another
+#' predictor matrix \eqn{Y}, by orthogonalizing \eqn{X} against \eqn{Y}.
+#' 
+#' The function can handle rank deficient matrices.
+#' 
+#' @param X matrix.  The matrix to be adjusted.
+#' @param Y matrix.  The matrix to be adjusted for.
+#' @return A matrix with an orthogonal basis for the adjusted predictor matrix.
+#' @author Øyvind Langsrud
+#' @keywords models internal
+#' @export 
 adjust = function(X,Y){
 orthY = myorth(Y)
 orthX = myorth(X)
