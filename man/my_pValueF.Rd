@@ -27,3 +27,4 @@ ny2)} is equivalent to \code{pf(f, ny1, ny2, lower.tail = FALSE)}.
 Øyvind Langsrud and Bjørn-Helge Mevik
 }
 \keyword{htest}
+\keyword{internal}

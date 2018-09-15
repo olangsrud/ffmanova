@@ -133,7 +133,8 @@
 #' \item{VextraDivS1}{as above} \item{termNames}{model term names}
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{linregEst}}, \code{\link{xy_Obj}}.
-#' @keywords models design
+#' @keywords models design internal
+#' @export 
 x_Obj = function(D,model){
 # % Make Type~II*-adjusted and OM-adjusted model matrix
 # %D_test = orth_D(D,model,'test');
@@ -227,7 +228,8 @@ c(xObj1,xObj2)
 #' @param method Either \code{"test"} or \code{"om"}
 #' @return An adjusted version of \code{D} is returned.
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
-#' @keywords models design
+#' @keywords models design internal
+#' @export
 orth_D = function(D,model,method){
 Dorth = vector("list",nrow(model))
 if(length(D)!= nrow(model))

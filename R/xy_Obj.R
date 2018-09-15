@@ -82,7 +82,8 @@
 #' @seealso \code{\link{x_Obj}}.
 #' @references Langsrud, Ø. (2002) 50-50 Multivariate Analysis of Variance for
 #' Collinear Responses.  \emph{The Statistician}, \bold{51}, 305--317.
-#' @keywords models design
+#' @keywords models design internal
+#' @export
 xy_Obj = function(xObj,Y){
    xyObj1 = linregEnd(xObj$Umodel,Y)
 YhatStd = sqrt( matrix(rowSums(xObj$Umodel^2),,1) %*% xyObj1$msError )

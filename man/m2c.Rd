@@ -46,4 +46,5 @@ coloumns of the matrices.
 \author{
 Øyvind Langsrud and Bjørn-Helge Mevik
 }
+\keyword{internal}
 \keyword{utilities}

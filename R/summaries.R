@@ -18,7 +18,8 @@
 #' @return Invisibly returns the original object.
 #' @author Bjørn-Helge Mevik
 #' @seealso \code{\link{ffmanova}}, \code{\link{printCoefmat}}
-#' @keywords print
+#' @keywords print internal
+#' @importFrom stats printCoefmat
 #' @export
 print.ffmanova <- function(x, digits = max(getOption("digits") - 3, 3), ...) {
     cat("--- 50-50 MANOVA ",

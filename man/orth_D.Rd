@@ -30,4 +30,5 @@ a non-overparameterised representation of the model.
 Øyvind Langsrud and Bjørn-Helge Mevik
 }
 \keyword{design}
+\keyword{internal}
 \keyword{models}

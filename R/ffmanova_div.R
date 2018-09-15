@@ -35,7 +35,6 @@ matlabColon <- function(from, to) { if(from > to) numeric(0) else from:to }
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{svd}}
 #' @keywords array algebra internal
-#' @export
 norm = function(X){
    svd(X, nu = 0, nv = 0)$d[1]
 }

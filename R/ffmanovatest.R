@@ -173,7 +173,8 @@
 #' Statistic} \item{pM}{\eqn{p}-value: Pillay-Bartlett Trace Statistic}
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{ffmanova}}
-#' @keywords htest design
+#' @keywords htest design internal
+#' @export 
 ffmanovatest = function(modelData,errorData,stand=0,
                           part=c(0.9,0.5),
                           partBufDim=0.5,
@@ -305,6 +306,7 @@ c(list(exVar1=exVar1,exVar2=exVar2,dim=dim,dimX=dimX,dimY=dimY,bufferDim=bufferD
 #' Trace Statistic}
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @keywords htest
+#' @export
 multiStatistics = function(ss) {
 eps = 2.2204e-016  ### eps in matlab
 D = 1;
@@ -384,6 +386,7 @@ list(D=D,E=E,A=A,M=M);
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{ffmanova}}
 #' @keywords htest
+#' @export
 multiPvalues = function(D,E,A,M,dim,dimX,dimY){
 p = dimY;
 q = dimX;
@@ -446,7 +449,8 @@ list(pD=pD,pE=pE,pA=pA,pM=pM);
 #' @return A \eqn{p}-value.
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{pf}}
-#' @keywords htest
+#' @keywords htest internal
+#' @importFrom stats pf
 my_pValueF = function(f,ny1,ny2) {
 pf(f,ny1,ny2,lower.tail = FALSE)
 }

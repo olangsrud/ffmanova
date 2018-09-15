@@ -32,6 +32,8 @@
 #' @author Bjørn-Helge Mevik and Øyvind Langsrud
 #' @seealso \code{\link{scale}}
 #' @keywords array
+#' @importFrom stats var
+#' @export
 #' @examples
 #' 
 #' A <- matrix(rnorm(15, mean = 1), ncol = 3)

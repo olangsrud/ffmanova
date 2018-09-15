@@ -75,7 +75,8 @@
 #' and a list with components \code{errorObs} and \code{df_error} is returned.
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{ffmanova}}
-#' @keywords regression multivariate
+#' @keywords regression multivariate internal
+#' @export
 linregEst = function(X,Y){
 linreg_Start = linregStart(X)
 linreg_End =linregEnd(linreg_Start$Umodel,Y)

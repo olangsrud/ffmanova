@@ -206,7 +206,6 @@
 #' \code{rotationtests} is a wrapper function that calls \code{rotationtest}
 #' for each term in the \code{xyObj} and collects the results.
 #' 
-#' @aliases rotationtest rotationtests
 #' @param modelData matrix of hypothesis observations
 #' @param errorData matrix of error observations
 #' @param simN Number of simulations for each test. Can be a single value or a
@@ -235,6 +234,9 @@
 #' Campylobacter jejuni under environmental conditions.  \emph{Applied and
 #' Environmental Microbiology}, \bold{71}, 2086-2094.
 #' @keywords htest
+#' @importFrom stats end rnorm
+#' @importFrom utils flush.console
+#' @export
 rotationtest = function(modelData,errorData,simN=999,dfE=-1,dispsim = TRUE){
 ## Dirty hack; maybe do something more clever/faster when simN == 0?
 if (simN == 0) dispsim <- FALSE

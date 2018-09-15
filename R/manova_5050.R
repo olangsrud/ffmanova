@@ -174,6 +174,7 @@
 #' @references Langsrud, Ø. (2002) Rotation Tests. \emph{The Statistician},
 #' \bold{51}, 305--317.
 #' @keywords models design multivariate
+#' @export
 manova5050 = function(xyObj,stand){
 #if(stand) Y = stdStand(Y)
 #xyObj = xy_Obj(xObj,Y)

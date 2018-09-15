@@ -33,4 +33,5 @@ The function constructs an anova table, and prints it using
 \author{
 Bjørn-Helge Mevik
 }
+\keyword{internal}
 \keyword{print}

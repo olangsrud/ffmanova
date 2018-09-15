@@ -50,7 +50,8 @@
 #' \code{myorth(X)} returns \code{c*X} where \code{c} is a positive constant.
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{svd}}
-#' @keywords array algebra
+#' @keywords array algebra internal
+#' @export
 myorth = function(X,tol_ = 1e-9){
 if(dim(X)[2]==0)
    return(X)

@@ -58,3 +58,4 @@ observations and a matrix of error observations.
 }
 \keyword{design}
 \keyword{htest}
+\keyword{internal}

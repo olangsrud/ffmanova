@@ -39,4 +39,5 @@ are created.
 Øyvind Langsrud and Bjørn-Helge Mevik
 }
 \keyword{design}
+\keyword{internal}
 \keyword{models}

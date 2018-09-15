@@ -201,8 +201,9 @@
 #' Campylobacter jejuni under environmental conditions.  \emph{Applied and
 #' Environmental Microbiology}, \bold{71}, 2086-2094.
 #' 
-#' See also \url{http://www.matforsk.no/ola/}.
+#' See also \url{http://www.langsrud.com/stat/program.htm}.
 #' @keywords models design multivariate
+#' @importFrom stats model.matrix model.response
 #' @export
 #' @examples
 #' 
@@ -298,6 +299,8 @@ ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
     structure(c(res1,res2,res3), class = "ffmanova")
 }
 
+#' @rdname rotationtest
+#' @export
 rotationtests = function(xyObj, nSim, verbose = TRUE){
     nTerms = length(xyObj$xObj$df_D_test)
     nYvar = dim(xyObj$Y)[2]
@@ -321,7 +324,8 @@ rotationtests = function(xyObj, nSim, verbose = TRUE){
     list(pAdjusted=pAdjusted,pAdjFDR=pAdjFDR,simN=simN_)
 }
 
-
+#' @rdname unitest
+#' @export
 unitests = function(xyObj){
 nTerms = length(xyObj$xObj$df_D_test)
 nYvar = dim(xyObj$Y)[2]

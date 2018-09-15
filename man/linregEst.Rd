@@ -59,5 +59,6 @@ and a list with components \code{errorObs} and \code{df_error} is returned.
 \author{
 Øyvind Langsrud and Bjørn-Helge Mevik
 }
+\keyword{internal}
 \keyword{multivariate}
 \keyword{regression}

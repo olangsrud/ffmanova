@@ -51,7 +51,8 @@
 #' @note \code{sum(df)} must equal \code{ncol(X)}.
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{ffmanova}}
-#' @keywords utilities
+#' @keywords utilities internal
+#' @export
 m2c = function(M,df=rep(1,dim(M)[2])){
 CC = vector("list",length(df))
 k=0

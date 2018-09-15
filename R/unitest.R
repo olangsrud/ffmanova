@@ -51,7 +51,6 @@
 #' term in the \code{xyObj} (see \code{\link{xy_Obj}} for details) and collects
 #' the results.
 #' 
-#' @aliases unitest unitests
 #' @param modelData matrix of hypothesis observations
 #' @param errorData matrix of error observations
 #' @param dfError Degrees of freedom for error needs to be specified if
@@ -70,6 +69,7 @@
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{rotationtest}}, \code{\link{rotationtests}}
 #' @keywords htest
+#' @export
 unitest = function(modelData,errorData,dfError=dim(errorData)[1]){
 dfModel = dim(modelData)[1];
 nYvar  = dim(modelData)[];

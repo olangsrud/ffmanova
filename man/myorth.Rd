@@ -40,3 +40,4 @@ In the special case where \code{X} has a single column,
 }
 \keyword{algebra}
 \keyword{array}
+\keyword{internal}

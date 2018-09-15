@@ -52,4 +52,5 @@ Collinear Responses.  \emph{The Statistician}, \bold{51}, 305--317.
 Øyvind Langsrud and Bjørn-Helge Mevik
 }
 \keyword{design}
+\keyword{internal}
 \keyword{models}
