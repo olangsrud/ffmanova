@@ -1,4 +1,3 @@
-### $Id$
 # % File: ffmanovatest.m
 # %
 # % Purpose: Perform Fifty-Fifty MANOVA tests from DFmodel rows of
@@ -140,6 +139,42 @@
 # [pD,pE,pA,pM] = multiPvalues(D,E,A,M,dim,dimX,dimY);
 #####################################################################
 # difference from matlab: stand as arg3, + default arguments
+
+
+#' 50-50 MANOVA testing
+#' 
+#' The function performs 50-50 MANOVA testing based on a matrix of hypothesis
+#' observations and a matrix of error observations.
+#' 
+#' \code{modelData} and \code{errorObs} correspond to \code{hypObs} and
+#' \code{errorObs} calculated by \code{xy_Obj}.
+#' 
+#' @param modelData matrix of hypothesis observations
+#' @param errorData matrix of error observations
+#' @param stand Standardisation (0 or 1) of responses
+#' @param part The variance explained required when choosing the number of
+#' components for testing. The default value is 0.5, but to choose a single
+#' component 0.9 is required.
+#' @param partBufDim tuning parameter for the number of buffer components
+#' @param minBufDim minimum (if possible) number of buffer components
+#' @param maxBufDim maximum number of buffer components
+#' @param minErrDf minimum number of "free dimensions"
+#' @param cp correction parameter when "few" responses
+#' @return A list with components \item{exVar1}{variance explained by
+#' \code{dimY} components} \item{exVar2}{variance explained by
+#' \code{dimY+bufferDim} components} \item{dim}{dimension of final
+#' "MANOVA-space"} \item{dimX}{the ordinary degrees of freedom for the test}
+#' \item{dimY}{number of components for testing} \item{bufferDim}{number of
+#' buffer components} \item{D}{test statistic: Wilks' Lambda} \item{E}{test
+#' statistic: Roy's Largest Root} \item{A}{test statistic: Hotelling-Lawley
+#' Trace Statistic} \item{M}{test statistic: Pillay-Bartlett Trace Statistic}
+#' \item{pD}{\eqn{p}-value: Wilks' Lambda} \item{pE}{\eqn{p}-value: LOWER BOUND
+#' for Roy's Largest Root} \item{pA}{\eqn{p}-value: Hotelling-Lawley Trace
+#' Statistic} \item{pM}{\eqn{p}-value: Pillay-Bartlett Trace Statistic}
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @seealso \code{\link{ffmanova}}
+#' @keywords htest design internal
+#' @export 
 ffmanovatest = function(modelData,errorData,stand=0,
                           part=c(0.9,0.5),
                           partBufDim=0.5,
@@ -255,6 +290,23 @@ c(list(exVar1=exVar1,exVar2=exVar2,dim=dim,dimX=dimX,dimY=dimY,bufferDim=bufferD
 #    M = M+ss(i);
 # end
 ################################################
+
+
+#' MANOVA test statistics
+#' 
+#' The four classical MANOVA test statistics are calculated from a set of
+#' eigenvalues.
+#' 
+#' These eigenvalues are also known as the squared canonical correlation
+#' coefficients.
+#' 
+#' @param ss A list of eigenvalues
+#' @return A list with elements \item{D}{Wilks' Lambda} \item{E}{Roy's Largest
+#' Root} \item{A}{Hotelling-Lawley Trace Statistic} \item{M}{Pillay-Bartlett
+#' Trace Statistic}
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @keywords htest
+#' @export
 multiStatistics = function(ss) {
 eps = 2.2204e-016  ### eps in matlab
 D = 1;
@@ -309,6 +361,32 @@ list(D=D,E=E,A=A,M=M);
 # end
 # pM = my_pValueF(fM,s*(2*m+s+1),s*(2*n+s+1));
 #################################################
+
+
+#' p-values from MANOVA test statistics
+#' 
+#' \eqn{p}-values from the four MANOVA test statistics are calculated according
+#' to the traditional F-distribution approximations (exact in some cases).
+#' 
+#' The parameters \code{dim}, \code{dimX} and \code{dimY} corresponds to a
+#' situation where the test statistics are calculated from two data matrices
+#' with zero mean (test of independence).
+#' 
+#' @param D Wilks' Lambda
+#' @param E Roy's Largest Root
+#' @param A Hotelling-Lawley Trace Statistic
+#' @param M Pillay-Bartlett Trace Statistic
+#' @param dim Number of observations
+#' @param dimX Number of x-variables
+#' @param dimY Number of y-variables
+#' @return \item{pD}{\eqn{p}-value: Wilks' Lambda} \item{pE}{\eqn{p}-value:
+#' LOWER BOUND for Roy's Largest Root} \item{pA}{\eqn{p}-value:
+#' Hotelling-Lawley Trace Statistic} \item{pM}{\eqn{p}-value: Pillay-Bartlett
+#' Trace Statistic}
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @seealso \code{\link{ffmanova}}
+#' @keywords htest
+#' @export
 multiPvalues = function(D,E,A,M,dim,dimX,dimY){
 p = dimY;
 q = dimX;
@@ -357,6 +435,22 @@ list(pD=pD,pE=pE,pA=pA,pM=pM);
 #    end
 # end
 #################################################
+
+
+#' F-test p-values
+#' 
+#' This is simply a wrapper around \code{\link{pf}}: \code{my_pValueF(f, ny1,
+#' ny2)} is equivalent to \code{pf(f, ny1, ny2, lower.tail = FALSE)}.
+#' 
+#' 
+#' @param f The \eqn{F} value
+#' @param ny1 The numerator df's
+#' @param ny2 The denominator df's
+#' @return A \eqn{p}-value.
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @seealso \code{\link{pf}}
+#' @keywords htest internal
+#' @importFrom stats pf
 my_pValueF = function(f,ny1,ny2) {
 pf(f,ny1,ny2,lower.tail = FALSE)
 }

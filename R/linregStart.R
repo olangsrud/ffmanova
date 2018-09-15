@@ -1,4 +1,3 @@
-### $Id$
 # %=============== linregStart.m ====================
 # %  [Umodel,Uerror,VmodelDivS,VextraDivS1] = linregStart(X)
 # %        performs the part of linregEst that can be done without knowing Y.

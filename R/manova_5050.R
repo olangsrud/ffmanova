@@ -1,4 +1,3 @@
-### $Id$
 # %=============== manova_5050.m ====================
 # % function results = manova_5050(xObj,Y,stand)
 # %    Takes a model object (created by x_Obj.m) togheter with a
@@ -140,6 +139,42 @@
 #     outputText=outLine(outputText,sprintf('%s%s%s%s%s%s%s%s%s%s',s1,s2,s3,s4,s5,s6));
 # results.outputText = outputText;
 #############################################################################
+
+
+#' Computation of 50-50 MANOVA results
+#' 
+#' The function takes a design-with-responses object created by \code{xy_Obj}
+#' and produces 50-50 MANOVA output. Results are produced for each term in the
+#' model.
+#' 
+#' Classical multivariate ANOVA (MANOVA) are useless in many practical cases.
+#' The tests perform poorly in cases with several highly correlated responses
+#' and the method collapses when the number of responses exceeds the number of
+#' observations. 50-50 MANOVA is made to handle this problem. Principal
+#' component analysis (PCA) is an important part of this methodology. Each test
+#' is based on a separate PCA.
+#' 
+#' @param xyObj design-with-responses object
+#' @param stand standardisation of responses (0 or 1)
+#' @return A list with components \item{termNames}{model term names}
+#' \item{exVarSS}{explained variances calculated from sums of squares summed
+#' over all responses} \item{df}{degrees of freedom - adjusted for other terms
+#' in model} \item{df_om}{degrees of freedom - adjusted for terms contained in
+#' actual term} \item{nPC}{number of principal components used for testing}
+#' \item{nBU}{number of principal components used as buffer components}
+#' \item{exVarPC}{variance explained by \code{nPC} components}
+#' \item{exVarBU}{variance explained by \code{(nPC+nBU)} components}
+#' \item{pValues}{50-50 MANOVA p-values} \item{stand}{logical.  Whether the
+#' responses are standardised.}
+#' @note The 50-50 MANOVA \eqn{p}-values are based on the Hotelling-Lawley
+#' Trace Statistic. The number of components for testing and the number of
+#' buffer components are chosen according to default rules.
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @seealso \code{\link{ffmanova}}
+#' @references Langsrud, Ø. (2002) Rotation Tests. \emph{The Statistician},
+#' \bold{51}, 305--317.
+#' @keywords models design multivariate
+#' @export
 manova5050 = function(xyObj,stand){
 #if(stand) Y = stdStand(Y)
 #xyObj = xy_Obj(xObj,Y)
@@ -171,7 +206,8 @@ for(i in 1:nTerms){
    exVarBU = c(exVarBU ,res$exVar2)
    pValues = c(pValues ,res$pA)
 }#end
-list(termNames=xyObj$xObj$termNames,
+addNames(   # addNames is new in 2018
+  list(termNames=xyObj$xObj$termNames,
      exVarSS = xyObj$ss/xyObj$ssTot,
      df = c(xyObj$xObj$df_D_test, xyObj$xObj$df_error),
      df_om = c(xyObj$xObj$df_D_om, xyObj$xObj$df_error),
@@ -180,7 +216,8 @@ list(termNames=xyObj$xObj$termNames,
      exVarPC = exVarPC,
      exVarBU = exVarBU,
      pValues = pValues,
-     stand = stand)
+     stand = stand),
+  rowNames = xyObj$xObj$termNames)     
 }
 
 # % Subfunction

@@ -1,4 +1,3 @@
-### $Id$
 # %=============== xy_Obj.m ====================
 # %  xyObj = xy_Obj(xObj,Y,yNames)
 # %      takes an object created by x_Obj as input and
@@ -47,6 +46,44 @@
 # xyObj.ss = ss;
 # xyObj.hypObs = hypObs;
 ##############################################################
+
+
+#' Creation of a design-with-responses object
+#' 
+#' The function takes an object created by \code{x_Obj} as input and add
+#' response values. Further initial computations for prediction and testing is
+#' made.
+#' 
+#' Traditionally, sums of squares and cross-products (SSC) is the multivariate
+#' generalisation of sums of squares. When there is a large number of responses
+#' this representation is inefficient and therefore linear combinations of
+#' observations (Langsrud, 2002) is stored instead, such as \code{errorObs}.
+#' The corresponding SSC matrix can be obtained by
+#' \code{t(errorObs)\%*\%errorObs}. When there is a large number of observations
+#' the errorObs representation is also inefficient, but it these cases it is
+#' possible to chose a representation with several zero rows. Then, errorObs is
+#' stored as a two-component list: A matrix containing the nonzero rows of
+#' errorObs and an integer representing the degrees of freedom for error
+#' (number of rows in the full errorObs matrix).
+#' 
+#' @param xObj object created by \code{x_Obj}
+#' @param Y response matrix
+#' @return A list with components \item{xObj}{same as input} \item{Y}{same as
+#' input} \item{ssTotFull}{equals \code{sum(Y^2)}} \item{ssTot}{equals
+#' \code{sum((center(Y))^2)}. That is, the total sum of squares summed over all
+#' responses.} \item{ss}{Sums of squares summed over all responses.}
+#' \item{Beta}{Output from \code{linregEst} where \code{xObj$D_om} is the
+#' regressor matrix.} \item{Yhat}{fitted values} \item{YhatStd}{standard
+#' deviations of fitted values} \item{msError}{mean square error of each
+#' response} \item{errorObs}{Error observations that can be used in
+#' multivariate testing} \item{hypObs}{Hypothesis observations that can be used
+#' in multivariate testing}
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @seealso \code{\link{x_Obj}}.
+#' @references Langsrud, Ø. (2002) 50-50 Multivariate Analysis of Variance for
+#' Collinear Responses.  \emph{The Statistician}, \bold{51}, 305--317.
+#' @keywords models design internal
+#' @export
 xy_Obj = function(xObj,Y){
    xyObj1 = linregEnd(xObj$Umodel,Y)
 YhatStd = sqrt( matrix(rowSums(xObj$Umodel^2),,1) %*% xyObj1$msError )
