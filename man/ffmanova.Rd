@@ -113,14 +113,18 @@ res$pAdjFDR[6,]   # False discovery rate adjusted p-values for stab^2
 
 # Note that the results of the first example above can also be 
 # obtained by using the car package.
-\dontrun{Anova(lm(visc ~ (factor(press) + factor(stab) + factor(emul))^2 + day,
-      data = dressing), type = "II")}
+\dontrun{
+   require(car)
+   Anova(lm(visc ~ (factor(press) + factor(stab) + factor(emul))^2 + day,
+         data = dressing), type = "II")}
 
 # The results of the second example differ because Anova does not recognise 
 # linear terms (emul) as being contained in quadratic terms (I(emul^2)).
 # A consequence here is that the clear significance of emul disappears.
-\dontrun{Anova(lm(visc ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,
-      data = dressing), type="II")}
+\dontrun{
+   require(car)
+   Anova(lm(visc ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,
+         data = dressing), type="II")}
 
 }
 \references{

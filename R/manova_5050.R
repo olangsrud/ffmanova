@@ -206,7 +206,8 @@ for(i in 1:nTerms){
    exVarBU = c(exVarBU ,res$exVar2)
    pValues = c(pValues ,res$pA)
 }#end
-list(termNames=xyObj$xObj$termNames,
+addNames(   # addNames is new in 2018
+  list(termNames=xyObj$xObj$termNames,
      exVarSS = xyObj$ss/xyObj$ssTot,
      df = c(xyObj$xObj$df_D_test, xyObj$xObj$df_error),
      df_om = c(xyObj$xObj$df_D_om, xyObj$xObj$df_error),
@@ -215,7 +216,8 @@ list(termNames=xyObj$xObj$termNames,
      exVarPC = exVarPC,
      exVarBU = exVarBU,
      pValues = pValues,
-     stand = stand)
+     stand = stand),
+  rowNames = xyObj$xObj$termNames)     
 }
 
 # % Subfunction

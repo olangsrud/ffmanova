@@ -1,7 +1,7 @@
 Package: ffmanova
 Type: Package
 Title: Fifty-fifty MANOVA
-Version: 0.2-4
+Version: 0.9.0
 Date: 2018-09-15
 Author: Øyvind Langsrud and Bjørn-Helge Mevik
 Maintainer: Bjørn-Helge Mevik <ffmanova@mevik.net>
