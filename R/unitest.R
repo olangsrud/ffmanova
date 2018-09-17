@@ -1,4 +1,3 @@
-### $Id$
 # %=============== uniTest.m ====================
 # % [pValues,stat] = uniTest(modelData,errorData,dfError)
 # %     calculates univariate F or t (when DF=1) statistics and
@@ -33,6 +32,44 @@
 # function pValue = my_pValueF_(f,ny1,ny2)
 #      pValue = betainc(ny2*((ny2+ny1*f).^(-1)),ny2/2,ny1/2);
 ################################################################################
+
+
+#' Univariate F or t testing
+#' 
+#' The functions perform \eqn{F} or \eqn{t} testing for several responses based
+#' on a matrix of hypothesis observations and a matrix of error observations.
+#' 
+#' \code{modelData} and \code{errorObs} correspond to \code{hypObs} and
+#' \code{errorObs} calculated by \code{xy_Obj}. These matrices are efficient
+#' representations of sums of squares and cross-products (see
+#' \code{\link{xy_Obj}} for details).  This means the univariate
+#' \eqn{F}-statistics can be calculated straightforwardly from these input
+#' matrices. Furthermore, in the single-degree-of-freedom case,
+#' \eqn{t}-statistics with correct sign can be obtained.
+#' 
+#' \code{unitests} is a wrapper function that calls \code{unitest} for each
+#' term in the \code{xyObj} (see \code{\link{xy_Obj}} for details) and collects
+#' the results.
+#' 
+#' @param modelData matrix of hypothesis observations
+#' @param errorData matrix of error observations
+#' @param dfError Degrees of freedom for error needs to be specified if
+#' \code{errorData} is incomplete
+#' @param xyObj a design-with-responses object created by \code{\link{xy_Obj}}
+#' @return \code{unitest} returns a list with components
+#' \item{pValues}{\eqn{p}-values} \item{stat}{The test statistics as
+#' \eqn{t}-statistics (when single degree of freedom) or \eqn{F}-statistics }
+#' 
+#' \code{unitests} returns a list with components \item{pRaw}{Matrix of
+#' \eqn{p}-values from \code{unitest}, one row for each term.}
+#' \item{stat}{Matrix of test statistics from \code{unitest}, one row for each
+#' term.}
+#' @note The function calculates the \eqn{p}-values by making a call to
+#' \code{pf}.
+#' @author Øyvind Langsrud and Bjørn-Helge Mevik
+#' @seealso \code{\link{rotationtest}}, \code{\link{rotationtests}}
+#' @keywords htest
+#' @export
 unitest = function(modelData,errorData,dfError=dim(errorData)[1]){
 dfModel = dim(modelData)[1];
 nYvar  = dim(modelData)[];
