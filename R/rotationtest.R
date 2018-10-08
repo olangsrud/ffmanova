@@ -238,6 +238,9 @@
 #' @importFrom utils flush.console
 #' @export
 rotationtest = function(modelData,errorData,simN=999,dfE=-1,dispsim = TRUE){
+  # Avoid error in renjin caused by LAPACK = TRUE in qr
+  isRenjin = grepl("renjin",tolower(R.version.string))   
+  useLAPACK = !isRenjin 
 ## Dirty hack; maybe do something more clever/faster when simN == 0?
 if (simN == 0) dispsim <- FALSE
 dfH = dim(modelData)[1];
@@ -308,15 +311,16 @@ while(i<simN){
     i=i+1; #%%%---%%%  Z = Xs' * Ys;
     if(repsim){
         if(repindex==0)
-            Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1), LAPACK = TRUE))
+            Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1), LAPACK = useLAPACK))
         #end
         Z <- crossprod(Xs[(repindex*dfT_+1):((repindex+1)*dfT_),,drop = FALSE],
                        Ys)
         repindex = (repindex+1)%%repsim
     }else{
-        Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1), LAPACK = TRUE))
+        Xs = qr.Q(qr(matrix(rnorm(sizeX_12),nrow=sizeX_1), LAPACK = useLAPACK))
         Z = crossprod(Xs[1:dfT_,,drop = FALSE], Ys)
     }#end
+   
     sss=colSums(Z*Z) #### apply(Z*Z,2,sum)
 
 
