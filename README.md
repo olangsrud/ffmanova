@@ -12,7 +12,7 @@ This is the source code repository of the CRAN package "ffmanova".
 (If needed, install the `devtools` package from CRAN first.)
 
     library(devtools)
-    install_github("bhmevik/ffmanova")
+    install_github("olangsrud/ffmanova")
 
 ## Usage
 
