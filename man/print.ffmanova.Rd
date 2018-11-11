@@ -4,7 +4,8 @@
 \alias{print.ffmanova}
 \title{Print method for ffmanova}
 \usage{
-\method{print}{ffmanova}(x, digits = max(getOption("digits") - 3, 3), ...)
+\method{print}{ffmanova}(x, digits = max(getOption("digits") - 3, 3),
+  ...)
 }
 \arguments{
 \item{x}{\code{"ffmanova"} object.  Typically created by
