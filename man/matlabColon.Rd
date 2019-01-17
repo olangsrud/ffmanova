@@ -19,13 +19,13 @@ A function to simulate Matlab's \sQuote{:} operator.
 }
 \details{
 \code{matlabCode(a,b)} returns \code{a:b} ('s version) unless \code{a > b},
-in which case it returns \code{numeric(0)}.
+in which case it returns \code{integer(0)}.
 }
 \examples{
 
 identical(3:5, matlabColon(3, 5)) ## => TRUE
 3:1 ## => 3 2 1
-matlabColon(3, 1) ## => numeric(0)
+matlabColon(3, 1) ## => integer(0)
 
 }
 \seealso{

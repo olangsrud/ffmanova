@@ -143,7 +143,7 @@ multifactor approach for investigating global survival mechanisms of
 Campylobacter jejuni under environmental conditions.  \emph{Applied and
 Environmental Microbiology}, \bold{71}, 2086-2094.
 
-See also \url{http://www.langsrud.com/stat/program.htm}.
+See also \url{https://www.langsrud.com/stat/program.htm}.
 }
 \seealso{
 \code{\link{manova5050}}, \code{\link{rotationtests}} and

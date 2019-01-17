@@ -201,7 +201,7 @@
 #' Campylobacter jejuni under environmental conditions.  \emph{Applied and
 #' Environmental Microbiology}, \bold{71}, 2086-2094.
 #' 
-#' See also \url{http://www.langsrud.com/stat/program.htm}.
+#' See also \url{https://www.langsrud.com/stat/program.htm}.
 #' @keywords models design multivariate
 #' @importFrom stats model.matrix model.response
 #' @export
