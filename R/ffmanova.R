@@ -128,9 +128,6 @@
 #' univariate \eqn{p}-values and adjusted \eqn{p}-values using rotation
 #' testing.
 #' 
-#' The model is specified with \code{formula}, in the same way as in \code{lm}
-#' (except that offsets are not supported).  See \code{\link{lm}} for details.
-#' 
 #' An overall \eqn{p}-value for all responses is calculated for each model
 #' term. This is done using the 50-50 MANOVA method, which is a modified
 #' variant of classical MANOVA made to handle several highly correlated
@@ -153,8 +150,8 @@
 #' significance testing an explained variance measure, which is based on sums
 #' of sums of squares, is computed for each model term.
 #' 
-#' @param formula Model formula.  See Details.
-#' @param data Data frame with model data.
+#' @param formula Model formula.  See "Note" below.
+#' @param data An optional data frame or list.
 #' @param stand Logical. Standardization of responses. This option has effect
 #' on the 50-50 MANOVA testing and the calculation of \code{exVarSS}.
 #' @param nSim nonnegative integer. The number of simulations to use in the
@@ -202,6 +199,10 @@
 #' Environmental Microbiology}, \bold{71}, 2086-2094.
 #' 
 #' See also \url{https://www.langsrud.com/stat/program.htm}.
+#' 
+#' @note The model is specified with \code{formula}, in the same way as in \code{lm}
+#' (except that offsets are not supported).  See \code{\link{lm}} for details.
+#' Input parameters \code{formula} and \code{data} will be interpreted by \code{\link{model.frame}}.
 #' @keywords models design multivariate
 #' @importFrom stats model.matrix model.response
 #' @export
@@ -255,7 +256,7 @@
 #'    Anova(lm(visc ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,
 #'          data = dressing), type="II")}
 #' 
-ffmanova <- function(formula, data, stand = TRUE, nSim = 0, verbose = TRUE) {
+ffmanova <- function(formula, data = NULL, stand = TRUE, nSim = 0, verbose = TRUE) {
 
     ## Get the model frame.  META: This is unneccessary general for the
     ## moment, but perhaps subset and na.action will be added later.

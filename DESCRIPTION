@@ -1,7 +1,7 @@
 Package: ffmanova
 Type: Package
 Title: Fifty-Fifty MANOVA
-Version: 1.0.1
+Version: 1.0.2
 Date: 2019-03-11
 Authors@R: c(person("Øyvind", "Langsrud", role = c("aut", "cre"),
                     email = "oyl@ssb.no"),

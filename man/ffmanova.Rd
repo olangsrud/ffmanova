@@ -4,12 +4,13 @@
 \alias{ffmanova}
 \title{Fifty-fifty MANOVA}
 \usage{
-ffmanova(formula, data, stand = TRUE, nSim = 0, verbose = TRUE)
+ffmanova(formula, data = NULL, stand = TRUE, nSim = 0,
+  verbose = TRUE)
 }
 \arguments{
-\item{formula}{Model formula.  See Details.}
+\item{formula}{Model formula.  See "Note" below.}
 
-\item{data}{Data frame with model data.}
+\item{data}{An optional data frame or list.}
 
 \item{stand}{Logical. Standardization of responses. This option has effect
 on the 50-50 MANOVA testing and the calculation of \code{exVarSS}.}
@@ -51,9 +52,6 @@ univariate \eqn{p}-values and adjusted \eqn{p}-values using rotation
 testing.
 }
 \details{
-The model is specified with \code{formula}, in the same way as in \code{lm}
-(except that offsets are not supported).  See \code{\link{lm}} for details.
-
 An overall \eqn{p}-value for all responses is calculated for each model
 term. This is done using the 50-50 MANOVA method, which is a modified
 variant of classical MANOVA made to handle several highly correlated
@@ -75,6 +73,11 @@ a polynomial model with a single experimental variable produce results
 equivalent to the results using an orthogonal polynomial.  } In addition to
 significance testing an explained variance measure, which is based on sums
 of sums of squares, is computed for each model term.
+}
+\note{
+The model is specified with \code{formula}, in the same way as in \code{lm}
+(except that offsets are not supported).  See \code{\link{lm}} for details.
+Input parameters \code{formula} and \code{data} will be interpreted by \code{\link{model.frame}}.
 }
 \examples{
 
