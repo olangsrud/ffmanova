@@ -72,10 +72,10 @@
 #' @export
 unitest = function(modelData,errorData,dfError=dim(errorData)[1]){
 dfModel = dim(modelData)[1];
-nYvar  = dim(modelData)[];
+nYvar  = dim(modelData)[2];
 if(dfModel==0 | dfError==0){
-   pValues = rep(1,nYvar)
-   stat = rep(0,nYvar)
+   pValues = rep(NaN,nYvar) #rep(1,nYvar)
+   stat = rep(NaN,nYvar)
    return(list(pValues=pValues,stat=stat))
 }#end
 errorSS = colSums(errorData^2)

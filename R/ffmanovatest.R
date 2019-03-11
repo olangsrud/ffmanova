@@ -209,10 +209,10 @@ if(dimX==0 | dimYfull==0 | dim(errorData)[1]==0){
    E=0;
    A=0;
    M=0;
-   pD=99;
-   pE=99;
-   pA=99;
-   pM=99;
+   pD <- NaN  #99;
+   pE <- NaN  #99;
+   pA <- NaN  #99;
+   pM <- NaN  #99;
    return(list(exVar1=exVar1,exVar2=exVar2,dim=dim,dimX=dimX,dimY=dimY,
                bufferDim=bufferDim,
                D=D,E=E,A=A,M=M,pD=pD,pE=pE,pA=pA,pM=pM))
