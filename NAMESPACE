@@ -2,6 +2,7 @@
 
 S3method(print,ffmanova)
 export(adjust)
+export(ffAnova)
 export(ffmanova)
 export(ffmanovatest)
 export(fixModelMatrix)
