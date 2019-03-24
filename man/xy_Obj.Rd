@@ -2,14 +2,37 @@
 % Please edit documentation in R/xy_Obj.R
 \name{xy_Obj}
 \alias{xy_Obj}
+\alias{ffModelObj}
 \title{Creation of a design-with-responses object}
 \usage{
 xy_Obj(xObj, Y)
+
+ffModelObj(xObj, Y, modelMatrix, modelTerms, model, xlev, scaleY, scaleX,
+  centerX, isIntercept, returnY = FALSE, returnYhat = FALSE,
+  returnYhatStd = FALSE)
 }
 \arguments{
-\item{xObj}{object created by \code{x_Obj}}
+\item{xObj}{object created by \code{\link{x_Obj}}}
 
 \item{Y}{response matrix}
+
+\item{modelMatrix}{Model matrix (output from \code{model.matrix}) to be included in output.}
+
+\item{modelTerms}{Model terms (model frame attribute) to be included in output.}
+
+\item{scaleY}{Values used to scale Y (see \code{\link{stdize}}) to be included in output.}
+
+\item{scaleX}{Values used to scale the model matrix (see \code{\link{stdize}}) to be included in output.}
+
+\item{centerX}{Values used to center the model matrix (see \code{\link{stdize}}) to be included in output.}
+
+\item{isIntercept}{A logical (whether model has intercept) to be included in output.}
+
+\item{returnY}{Matrix \code{Y} (as input) in output when TRUE.}
+
+\item{returnYhat}{Matrix \code{Yhat} of fitted values corresponding to \code{Y} in output when TRUE.}
+
+\item{returnYhatStd}{Standard errors, \code{YhatStd}, in output when TRUE.}
 }
 \value{
 A list with components \item{xObj}{same as input} \item{Y}{same as
@@ -41,12 +64,13 @@ stored as a two-component list: A matrix containing the nonzero rows of
 errorObs and an integer representing the degrees of freedom for error
 (number of rows in the full errorObs matrix).
 }
+\note{
+\code{ffModelObj} is a rewrite of \code{xy_Obj} with additional elements in output corresponding 
+to the additional parameters in input. Furthermore, \code{Y} and \code{YhatStd} is by default not included in output.
+}
 \references{
 Langsrud, Ø. (2002) 50-50 Multivariate Analysis of Variance for
 Collinear Responses.  \emph{The Statistician}, \bold{51}, 305--317.
-}
-\seealso{
-\code{\link{x_Obj}}.
 }
 \author{
 Øyvind Langsrud and Bjørn-Helge Mevik

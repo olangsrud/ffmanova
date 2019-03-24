@@ -245,7 +245,7 @@ for(i in 1:nrow(model)){
          #seq  =,
          #ssIII = )
       }#end
-    Dorth[[i]] =  adjust(d,d_adj)
+   Dorth[[i]] =  adjust(d,d_adj)
  }# end
 Dorth
 }# end orth_D

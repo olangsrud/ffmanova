@@ -5,7 +5,9 @@
 \title{Fifty-fifty MANOVA}
 \usage{
 ffmanova(formula, data = NULL, stand = TRUE, nSim = 0,
-  verbose = TRUE)
+  verbose = TRUE, returnModel = TRUE, returnY = FALSE,
+  returnYhat = FALSE, returnYhatStd = FALSE, newdata = NULL,
+  linComb = NULL, nonEstimableAsNA = TRUE, outputClass = "ffmanova")
 }
 \arguments{
 \item{formula}{Model formula.  See "Note" below.}
@@ -19,8 +21,24 @@ on the 50-50 MANOVA testing and the calculation of \code{exVarSS}.}
 rotation tests. Can be a single nonnegative integer or a list of values for
 each term.}
 
-\item{verbose}{Logical.  If \code{TRUE}, the rotation tests print trace
-information.}
+\item{verbose}{Logical.  If \code{TRUE}, the rotation tests print trace information.}
+
+\item{returnModel}{When \code{TRUE}, and object, \code{ffModel}, with output from \code{\link{ffModelObj}} is included in output. 
+Must be \code{TRUE} to enable predictions by \code{\link{predict.ffmanova}}.}
+
+\item{returnY}{Response matrix, \code{Y}, in output when \code{TRUE}.}
+
+\item{returnYhat}{Matrix \code{Yhat} of fitted values corresponding to \code{Y} in output when \code{TRUE}.}
+
+\item{returnYhatStd}{Standard errors, \code{YhatStd}, in output when \code{TRUE}.}
+
+\item{newdata}{Possible input to \code{\link{predict.ffmanova}}. When non-NULL, prediction results will be included output.}
+
+\item{linComb}{Possible input to \code{\link{predict.ffmanova}} in addition to \code{newdata}.}
+
+\item{nonEstimableAsNA}{Will be used as input to \code{\link{predict.ffmanova}} when \code{newdata} and/or \code{linComb} is non-NULL.}
+
+\item{outputClass}{When set to, \code{"anova"}, \code{\link{ffAnova}} results will be produced.}
 }
 \value{
 An object of class \code{"ffmanova"}, which consists of the
@@ -44,6 +62,8 @@ adjusted \eqn{p}-values according to false discovery rates}
 \item{simN}{number of simulations performed for each term (same as input)}
 The matrices \code{stat}, \code{pRaw}, \code{pAdjusted} and \code{pAdjFDR}
 have one row for each model term and one column for each response.
+
+According to the input parameters, additional elements can be included in output.
 }
 \description{
 General linear modeling of fixed-effects models with multiple responses is

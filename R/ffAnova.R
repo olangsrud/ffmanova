@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 #' Type II* Anova
 #' 
 #' Analysis of variance table for a linear model using type \code{II}* sums of squares,
@@ -13,14 +5,14 @@
 #' Type \code{II}* extends the type \code{II} philosophy to continuous variables. 
 #' The results are invariant to scale changes and pitfalls are avoided. 
 #' 
-#' This function is a rewrite of \code{\link{ffmanova}} for the univariate special case.
+#' This function is a variant of \code{\link{ffmanova}} for the univariate special case.
 #' The two input parameters will be interpreted by \code{\link{model.frame}}.
 #'
 #' @param formula A model \code{\link{formula}} or an \code{R} object 
 #'     (preferably an \code{\link{lm}} object).
 #' @param data An optional data frame, list or environment.
 #'
-#' @return
+#' @return An object of class \code{"anova"} (see \code{\link{anova}}).
 #' @export
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @references 
@@ -77,6 +69,40 @@
 #' ffAnova(lm_a)    # Type II*
 #' ffAnova(lm_a100) # Type II*
 ffAnova <- function(formula, data = NULL) {
+  if (class(formula)[1] == "ffmanova") {
+    return(ffmanova2anova(formula))
+  }
+  # ffmanova(formula, data, outputClass = 'anova') # problem when lm imput
+  sysCall <- sys.call()
+  sysCall[[1]] <- as.name("ffmanova")
+  sysCall$outputClass <- "anova"
+  parentFrame <- parent.frame()
+  return(eval(sysCall, envir = parentFrame))
+}
+
+
+
+ffmanova2anova <- function(res) {
+  if (length(res$ffModel$msError) != 1) {
+    stop("Only a single response variable allowed.")
+  }
+  ssTot <- res$ffModel$ssTot
+  if (!is.null(res$ffModel$scaleY)) {
+    ssTot <- ssTot * res$ffModel$scaleY^2
+  }
+  tab <- with(res, data.frame(df, exVarSS * ssTot, exVarSS * ssTot/df, c(stat, NA), c(pValues, NA)))
+  dimnames(tab) <- list(c(res$termNames, "Residuals"), c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)"))
+  if (res$termNames[1] == "(Intercept)") 
+    tab <- tab[-1, ]
+  tstat <- tab[, 1] == 1 & !is.na(tab[, 4])
+  tab[tstat, 4] <- tab[tstat, 4]^2
+  return(structure(tab, class = c("anova", "data.frame"), 
+                   heading = c("Anova Table (Type II* tests)\n", paste("Response:", res$ffModel$colnamesY))))
+}
+
+
+
+ffAnova_Version_1_0_1 <- function(formula, data = NULL) {
   
   # Code copied from ffmanova
   # Duplicate code here to avoid interfering with old/stable code

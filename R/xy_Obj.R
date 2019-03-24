@@ -66,7 +66,7 @@
 #' errorObs and an integer representing the degrees of freedom for error
 #' (number of rows in the full errorObs matrix).
 #' 
-#' @param xObj object created by \code{x_Obj}
+#' @param xObj object created by \code{\link{x_Obj}}
 #' @param Y response matrix
 #' @return A list with components \item{xObj}{same as input} \item{Y}{same as
 #' input} \item{ssTotFull}{equals \code{sum(Y^2)}} \item{ssTot}{equals
@@ -79,7 +79,6 @@
 #' multivariate testing} \item{hypObs}{Hypothesis observations that can be used
 #' in multivariate testing}
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
-#' @seealso \code{\link{x_Obj}}.
 #' @references Langsrud, Ø. (2002) 50-50 Multivariate Analysis of Variance for
 #' Collinear Responses.  \emph{The Statistician}, \bold{51}, 305--317.
 #' @keywords models design internal
@@ -101,4 +100,45 @@ if(is.list(xyObj1$errorObs)){
 }#end
 xyObj2 = list(xObj=xObj,Y=Y,YhatStd=YhatStd,hypObs=hypObs,ss=ss,ssTotFull=sum(Y^2),ssTot=sum((stdize(Y, scale = FALSE))^2))
 c(xyObj1,xyObj2)
+}
+
+
+ 
+#' @rdname xy_Obj
+#' @param modelMatrix Model matrix (output from \code{model.matrix}) to be included in output.
+#' @param modelTerms Model terms (model frame attribute) to be included in output.
+#' @param scaleY Values used to scale Y (see \code{\link{stdize}}) to be included in output.
+#' @param scaleX Values used to scale the model matrix (see \code{\link{stdize}}) to be included in output.
+#' @param centerX Values used to center the model matrix (see \code{\link{stdize}}) to be included in output.
+#' @param isIntercept A logical (whether model has intercept) to be included in output.
+#' @param returnY Matrix \code{Y} (as input) in output when TRUE.
+#' @param returnYhat Matrix \code{Yhat} of fitted values corresponding to \code{Y} in output when TRUE.
+#' @param returnYhatStd Standard errors, \code{YhatStd}, in output when TRUE.
+#' @note \code{ffModelObj} is a rewrite of \code{xy_Obj} with additional elements in output corresponding 
+#' to the additional parameters in input. Furthermore, \code{Y} and \code{YhatStd} is by default not included in output.
+#' @export
+ffModelObj = function(xObj,Y, modelMatrix, modelTerms, model, xlev,
+                      scaleY, scaleX, centerX, isIntercept,
+                      returnY = FALSE, returnYhat = FALSE, returnYhatStd = FALSE){
+  xyObj1 <- linregEnd(xObj$Umodel, Y)
+  if (!returnYhat) xyObj1 <- xyObj1[names(xyObj1) != "Yhat"]
+  if (returnYhatStd) xyObj1$YhatStd <- sqrt(matrix(rowSums(xObj$Umodel^2), , 1) %*% xyObj1$msError)
+  if (returnY) xyObj1$Y <- Y
+  ss <- c()
+  hypObs <- vector("list", length(xObj$D_test))
+  for (i in 1:length(xObj$D_test)) {
+    hObs <- t(xObj$D_test[[i]]) %*% Y
+    hypObs[[i]] <- hObs
+    ss <- c(ss, sum(hObs^2))
+  }  #end
+  if (is.list(xyObj1$errorObs)) {
+    ss <- c(ss, xyObj1$errorObs[[2]] * sum(xyObj1$msError))
+  } else {
+    ss <- c(ss, nrow(xyObj1$errorObs) * sum(xyObj1$msError))
+  }  #end
+  xyObj2 <- list(xObj = xObj, colnamesY = colnames(Y), normY = norm(Y), hypObs = hypObs, ss = ss, 
+                 ssTotFull = sum(Y^2), ssTot = sum((stdize(Y, scale = FALSE))^2))
+  c(xyObj1, xyObj2, 
+    list(modelMatrix = modelMatrix, modelTerms = modelTerms, model = model, xlev = xlev, 
+         scaleY = scaleY, scaleX = scaleX, centerX = centerX, isIntercept = isIntercept))
 }

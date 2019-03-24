@@ -157,8 +157,17 @@
 #' @param nSim nonnegative integer. The number of simulations to use in the
 #' rotation tests. Can be a single nonnegative integer or a list of values for
 #' each term.
-#' @param verbose Logical.  If \code{TRUE}, the rotation tests print trace
-#' information.
+#' @param verbose Logical.  If \code{TRUE}, the rotation tests print trace information.
+#' @param returnModel When \code{TRUE}, and object, \code{ffModel}, with output from \code{\link{ffModelObj}} is included in output. 
+#'                    Must be \code{TRUE} to enable predictions by \code{\link{predict.ffmanova}}.
+#' @param returnY Response matrix, \code{Y}, in output when \code{TRUE}. 
+#' @param returnYhat Matrix \code{Yhat} of fitted values corresponding to \code{Y} in output when \code{TRUE}.
+#' @param returnYhatStd Standard errors, \code{YhatStd}, in output when \code{TRUE}.
+#' @param newdata Possible input to \code{\link{predict.ffmanova}}. When non-NULL, prediction results will be included output.
+#' @param linComb Possible input to \code{\link{predict.ffmanova}} in addition to \code{newdata}.
+#' @param nonEstimableAsNA Will be used as input to \code{\link{predict.ffmanova}} when \code{newdata} and/or \code{linComb} is non-NULL.
+#' @param outputClass When set to, \code{"anova"}, \code{\link{ffAnova}} results will be produced. 
+#' 
 #' @return An object of class \code{"ffmanova"}, which consists of the
 #' concatenated results from the underlying functions \code{\link{manova5050}},
 #' \code{\link{rotationtests}} and \code{\link{unitests}}:
@@ -180,6 +189,9 @@
 #' \item{simN}{number of simulations performed for each term (same as input)}
 #' The matrices \code{stat}, \code{pRaw}, \code{pAdjusted} and \code{pAdjFDR}
 #' have one row for each model term and one column for each response.
+#' 
+#' According to the input parameters, additional elements can be included in output. 
+#' 
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
 #' @seealso \code{\link{manova5050}}, \code{\link{rotationtests}} and
 #' \code{\link{unitests}}; the work horse functions.
@@ -204,7 +216,7 @@
 #' (except that offsets are not supported).  See \code{\link{lm}} for details.
 #' Input parameters \code{formula} and \code{data} will be interpreted by \code{\link{model.frame}}.
 #' @keywords models design multivariate
-#' @importFrom stats model.matrix model.response
+#' @importFrom stats model.matrix model.response delete.response model.frame na.pass
 #' @export
 #' @examples
 #' 
@@ -256,7 +268,10 @@
 #'    Anova(lm(visc ~ (press + stab + emul)^2 + I(press^2)+ I(stab^2)+ I(emul^2)+ day,
 #'          data = dressing), type="II")}
 #' 
-ffmanova <- function(formula, data = NULL, stand = TRUE, nSim = 0, verbose = TRUE) {
+ffmanova <- function(formula, data = NULL, stand = TRUE, nSim = 0, verbose = TRUE,
+                     returnModel = TRUE, returnY = FALSE, returnYhat = FALSE, returnYhatStd = FALSE,
+                     newdata = NULL, linComb = NULL, nonEstimableAsNA = TRUE,
+                     outputClass = "ffmanova") {
 
     ## Get the model frame.  META: This is unneccessary general for the
     ## moment, but perhaps subset and na.action will be added later.
@@ -266,34 +281,138 @@ ffmanova <- function(formula, data = NULL, stand = TRUE, nSim = 0, verbose = TRU
     mf[[1]] <- as.name("model.frame")
     mf <- eval(mf, parent.frame())
 
+    
+    ## Change aftet Version 1.0.0: xlev
+    xlev <- vector("list", NCOL(mf))
+    names(xlev) <- names(mf)
+    for (i in seq_along(xlev)) {
+      if (is.numeric(mf[, i])) {
+        if(NCOL(mf[, i])>1){
+          nfi <- NCOL(mf[, i])
+          txlevi <- t(mf[rep(1, nfi), i])
+          colnames(txlevi) <- NULL
+          txlevi[] <- apply(mf[, i],2,max)
+          diag(txlevi) <- apply(mf[, i],2,min)
+          xlev[[i]] <- t(txlevi)
+        } else {
+          xlev[[i]] <- range(mf[, i])
+        }
+      } else {
+        xlev[[i]] <- sort(unique(mf[, i]))
+      }
+    }
+    
+  
     ## Get the terms
     mt <- attr(mf, "terms")
 
     ## Get the data matrices:
     mm <- model.matrix(mt, mf)
+    
+    
     Y <- as.matrix(model.response(mf, "numeric"))
-    if (stand) Y <- stdize(Y, center = FALSE, avoid.zero.divisor = TRUE)
+    
+    ## Change aftet Version 1.0.0: res0 in output
+    returnModel <- isTRUE(returnModel)
+    returnY <- isTRUE(returnY)
+    returnYhat <- isTRUE(returnYhat)
+    returnYhatStd <- isTRUE(returnYhatStd)
+    res0 <- vector("list", as.integer(returnModel) + as.integer(returnY) + as.integer(returnYhat) + as.integer(returnYhatStd))
+    names(res0) <- c("ffModel", "Y", "Yhat", "YhatStd")[c(returnModel, returnY, returnYhat, returnYhatStd)]
+    if (returnY) res0$Y <- Y
+    
+    ## Change aftet Version 1.0.0: check outputClass and ensure colnames 
+    if (ncol(Y) != 1) {
+      if(outputClass == "anova")
+        stop("Only a single response variable allowed.")
+    } else {                           # colnames(Y) <- deparse(formula[[2]]) not working when lm object input
+      if (max(abs(Y - mf[, 1])) == 0)  #  unnecessary check? # much faster than identical(as.vector(Y),as.vector(mf[,1]))
+        colnames(Y) <- colnames(mf)[1]
+    }  ### End 'New code for ffAnova'
 
+    ## Change aftet Version 1.0.0: Compute scale by stdize3
+    ## if (stand) Y <- stdize(Y, center = FALSE, avoid.zero.divisor = TRUE)
+    if (stand & outputClass != "anova") {
+      Y <- stdize3(Y, center = FALSE, avoid.zero.divisor = TRUE)
+      scaleY <- Y$scale
+      Y <- Y$x
+    } else {
+      scaleY <- NULL
+    }
+        
     ## Create a `fator/term index matrix':
     mOld = attr(mt, "factors")
     ## Fix any I() terms:
     mNew = fixModelMatrix(mOld)
+    
+    
+    
     ## add constant term
-    mNew = cbind("(Intercept)" = 0, mNew)
+    ## Change aftet Version 1.0.0: Allow no intercept
+    isIntercept <- attr(mt, "intercept") == 1
+    if (isIntercept) {
+      mNew <- cbind(`(Intercept)` = 0, mNew)
+    }
+    
+    ## Change aftet Version 1.0.0: stdize mm
+    mmS <- stdize3(mm, center = isIntercept, avoid.zero.divisor = TRUE)
+    # mmS <- stdize3(mm, center = FALSE, scale = FALSE, avoid.zero.divisor = TRUE) # tests will fail
+    
     ## transpose
     model = t(mNew)
-
+    
+    ## Change aftet Version 1.0.0:
+    if(any(sapply(mf[, colnames(model)],NCOL)>1 & apply(model,2,max)>1)){
+      warning("Powers of embedded matrix here ([x1^2,x2^2]) is not defined as in the matlab version of ffmanova ([x1*x2,x1^2,x2^2]). Maybe changed in future.")
+    }
+    
     ## Split the model matrix into matrices for each term:
-    termNr = attr(mm, "assign") + 1
+    termNr = attr(mm, "assign") + as.integer(isIntercept)
+    
     D = vector("list", max(termNr))
     for (i in seq(along = D))
-        D[[i]] <- mm[,termNr == i, drop = FALSE]
+        D[[i]] <- mmS$x[,termNr == i, drop = FALSE]
 
-    xObj <- x_Obj(D, model)
-    xyObj = xy_Obj(xObj, Y)
 
-    nTerms = length(xyObj$xObj$df_D_test)
+    ## Change aftet Version 1.0.0: use ffMOdelObj, outputClass, returnModel, returnY, returnYhat
+    # xObj <- x_Obj(D, model)
+    # xyObj = xy_Obj(xObj, Y)
+    xyObj = ffModelObj(x_Obj(D, model), Y, modelMatrix = mm, modelTerms = mt, model = model, xlev=xlev,
+                       scaleY = scaleY, scaleX = mmS$scale, centerX = mmS$center, isIntercept = isIntercept,  
+                       returnYhat =returnYhat, returnYhatStd = returnYhatStd)
+    
+    
+    if (returnYhat) {
+      res0$Yhat <- xyObj$Yhat
+      xyObj$Yhat <- NULL
+      colnames(res0$Yhat) <- xyObj$colnamesY
+    }
+    if (returnYhatStd) {
+      res0$YhatStd <- xyObj$YhatStd
+      xyObj$YhatStd <- NULL
+      colnames(res0$YhatStd) <- xyObj$colnamesY
+    }
+    if ((returnYhatStd | returnYhat) & !is.null(scaleY)) {
+      scaleMatrix <- matrix(1, nrow = nrow(Y), ncol = 1) %*% scaleY
+      if (returnYhat) 
+        res0$Yhat <- res0$Yhat * scaleMatrix
+      if (returnYhatStd) 
+        res0$YhatStd <- res0$YhatStd * scaleMatrix
+      rm(scaleMatrix)
+    }
+    
+    nTerms <- length(xyObj$xObj$df_D_test)
+    
+    if (returnModel) res0$ffModel <- xyObj
+    
+    if (outputClass == "anova") {
+      return(ffmanova2anova(c(manova5050(xyObj, FALSE), unitests(xyObj), res0)))
+    }
+    
+    if (outputClass != "ffmanova") 
+      stop("Wrong outputClass")   
 
+    
     ## Do the manova:
     res1 = manova5050(xyObj,stand)
     ## And the rotation tests:
@@ -301,14 +420,23 @@ ffmanova <- function(formula, data = NULL, stand = TRUE, nSim = 0, verbose = TRU
     ## And the univariate tests:
     res3 = unitests(xyObj)
     ## Return everything:
-    structure(c(res1,res2,res3), class = "ffmanova")
+    
+    if (!is.null(newdata) | !is.null(linComb)) {
+      outf <- structure(c(res1, res2, res3, res0), class = "ffmanova")
+      outp <- predict.ffmanova(outf, newdata = newdata, linComb = linComb, nonEstimableAsNA = nonEstimableAsNA)
+      return(structure(c(outf, outp), class = "ffmanova"))
+    }
+    
+    structure(c(res1,res2,res3,res0), class = "ffmanova")
 }
+
 
 #' @rdname rotationtest
 #' @export
 rotationtests = function(xyObj, nSim, verbose = TRUE){
     nTerms = length(xyObj$xObj$df_D_test)
-    nYvar = dim(xyObj$Y)[2]
+    # nYvar = dim(xyObj$Y)[2]
+    nYvar = length(xyObj$msError)
     pAdjusted = matrix(1,nTerms,nYvar)
     pAdjFDR = matrix(1,nTerms,nYvar)
     simN_ = c()
@@ -329,14 +457,15 @@ rotationtests = function(xyObj, nSim, verbose = TRUE){
     addNames( # addNames is new in 2018
       list(pAdjusted=pAdjusted,pAdjFDR=pAdjFDR,simN=simN_),
       rowNames = xyObj$xObj$termNames,
-      colNames = colnames(xyObj$Y)) 
+      colNames = xyObj$colnamesY) 
 }
 
 #' @rdname unitest
 #' @export
 unitests = function(xyObj){
 nTerms = length(xyObj$xObj$df_D_test)
-nYvar = dim(xyObj$Y)[2]
+#nYvar = dim(xyObj$Y)[2]
+nYvar = length(xyObj$msError)
 pRaw = matrix(1,nTerms,nYvar)
 stat = matrix(0,nTerms,nYvar)
 for(i in 1:nTerms){
@@ -351,6 +480,6 @@ for(i in 1:nTerms){
 addNames( # addNames is new in 2018
   list(pRaw=pRaw,stat=stat),
   rowNames = xyObj$xObj$termNames,
-  colNames = colnames(xyObj$Y)) 
+  colNames = xyObj$colnamesY) 
 }
 
