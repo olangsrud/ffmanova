@@ -193,8 +193,8 @@
 #' According to the input parameters, additional elements can be included in output. 
 #' 
 #' @author Øyvind Langsrud and Bjørn-Helge Mevik
-#' @seealso \code{\link{manova5050}}, \code{\link{rotationtests}} and
-#' \code{\link{unitests}}; the work horse functions.
+#' @seealso \code{\link{ffAnova}} and \code{\link{predict.ffmanova}}.
+#' 
 #' @references Langsrud, Ø. (2002) 50-50 Multivariate Analysis of Variance for
 #' Collinear Responses. \emph{The Statistician}, \bold{51}, 305--317.
 #' 

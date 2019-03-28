@@ -169,8 +169,7 @@ Environmental Microbiology}, \bold{71}, 2086-2094.
 See also \url{https://www.langsrud.com/stat/program.htm}.
 }
 \seealso{
-\code{\link{manova5050}}, \code{\link{rotationtests}} and
-\code{\link{unitests}}; the work horse functions.
+\code{\link{ffAnova}} and \code{\link{predict.ffmanova}}.
 }
 \author{
 Øyvind Langsrud and Bjørn-Helge Mevik
