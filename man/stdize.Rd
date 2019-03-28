@@ -2,9 +2,12 @@
 % Please edit documentation in R/stdize.R
 \name{stdize}
 \alias{stdize}
+\alias{stdize3}
 \title{Centering and scaling of matrices}
 \usage{
 stdize(x, center = TRUE, scale = TRUE, avoid.zero.divisor = FALSE)
+
+stdize3(x, center = TRUE, scale = TRUE, avoid.zero.divisor = FALSE)
 }
 \arguments{
 \item{x}{A matrix.}
@@ -39,6 +42,10 @@ supplied) with \eqn{1} prior to division.
 The main difference between \code{stdize} and \code{\link{scale}} is that
 \code{stdize} divides by the standard deviations even when \code{center} is
 not \code{TRUE}.
+}
+\note{
+\code{stdize3} is a variant with a three-element list as output (\code{x, center, scale}) and where \code{avoid.zero.divisor} 
+is also used to avoid centring (constant term in model matrix is unchanged).
 }
 \examples{
 

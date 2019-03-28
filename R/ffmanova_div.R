@@ -137,8 +137,10 @@ for(i in 1:nVar){
 
 
 myrank = function(X,tol_ = 1e-9){ # Ny funksjon ikke matlab
+if(is.null(X))
+  return(0L)
 if(dim(X)[2]==0)                  # Kode hentet fra myorth
-   return(X)
+   return(0L)
 S = svd(X,nv=0,nu=0)
 S = S$d
 r = length(S)

@@ -12,6 +12,9 @@ ffAnova(formula, data = NULL)
 
 \item{data}{An optional data frame, list or environment.}
 }
+\value{
+An object of class \code{"anova"} (see \code{\link{anova}}).
+}
 \description{
 Analysis of variance table for a linear model using type \code{II}* sums of squares,
 which are described in Langsrud et al. (2007).
@@ -19,7 +22,7 @@ Type \code{II}* extends the type \code{II} philosophy to continuous variables.
 The results are invariant to scale changes and pitfalls are avoided.
 }
 \details{
-This function is a rewrite of \code{\link{ffmanova}} for the univariate special case.
+This function is a variant of \code{\link{ffmanova}} for the univariate special case.
 The two input parameters will be interpreted by \code{\link{model.frame}}.
 }
 \examples{

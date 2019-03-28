@@ -53,6 +53,8 @@
 #' @keywords array algebra internal
 #' @export
 myorth = function(X,tol_ = 1e-9){
+if(is.null(X))
+    return(X)
 if(dim(X)[2]==0)
    return(X)
 U = svd(X,nv=0)

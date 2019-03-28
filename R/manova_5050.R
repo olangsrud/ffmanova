@@ -185,7 +185,11 @@ nBU = c()
 exVarPC = c()
 exVarBU = c()
 pValues = c()
-normY = norm(xyObj$Y)
+if( "normY" %in% names(xyObj)){
+  normY = xyObj$normY
+} else {
+  normY = norm(xyObj$Y)
+}
 for(i in 1:nTerms){
    modelData = xyObj$hypObs[[i]]
    if(is.list(xyObj$errorObs)){
