@@ -49,7 +49,7 @@ ffAnova(y ~ (a + I(a^2)) * b)
 
 # Demonstrating similarities and differences using package car
 if (!require(car))        # Package car is loaded if available 
-  Anova <- function(x) {  # Replacement function if car not available
+  Anova <- function(...) {  # Replacement function if car not available
     warning("No results since package car is not available")}
 
 lm_Ab <- lm(y ~ A * b)
