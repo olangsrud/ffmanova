@@ -1,3 +1,8 @@
+## ffmanova 1.1.1
+
+* Minor fix in `ffAnova` example 
+  - Fix in replacement function when package `car` is not available.  
+
 ## ffmanova 1.1.0
 
 * New function `predict.ffmanova`. Thus, the generic function, predict, can take output from ffmanova as input. 
