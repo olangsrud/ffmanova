@@ -7,9 +7,21 @@
 \usage{
 xy_Obj(xObj, Y)
 
-ffModelObj(xObj, Y, modelMatrix, modelTerms, model, xlev, scaleY, scaleX,
-  centerX, isIntercept, returnY = FALSE, returnYhat = FALSE,
-  returnYhatStd = FALSE)
+ffModelObj(
+  xObj,
+  Y,
+  modelMatrix,
+  modelTerms,
+  model,
+  xlev,
+  scaleY,
+  scaleX,
+  centerX,
+  isIntercept,
+  returnY = FALSE,
+  returnYhat = FALSE,
+  returnYhatStd = FALSE
+)
 }
 \arguments{
 \item{xObj}{object created by \code{\link{x_Obj}}}

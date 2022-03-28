@@ -4,9 +4,17 @@
 \alias{ffmanovatest}
 \title{50-50 MANOVA testing}
 \usage{
-ffmanovatest(modelData, errorData, stand = 0, part = c(0.9, 0.5),
-  partBufDim = 0.5, minBufDim = 0, maxBufDim = 1e+08, minErrDf = 3,
-  cp = -1)
+ffmanovatest(
+  modelData,
+  errorData,
+  stand = 0,
+  part = c(0.9, 0.5),
+  partBufDim = 0.5,
+  minBufDim = 0,
+  maxBufDim = 1e+08,
+  minErrDf = 3,
+  cp = -1
+)
 }
 \arguments{
 \item{modelData}{matrix of hypothesis observations}

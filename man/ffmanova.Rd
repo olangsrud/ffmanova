@@ -4,10 +4,21 @@
 \alias{ffmanova}
 \title{Fifty-fifty MANOVA}
 \usage{
-ffmanova(formula, data = NULL, stand = TRUE, nSim = 0,
-  verbose = TRUE, returnModel = TRUE, returnY = FALSE,
-  returnYhat = FALSE, returnYhatStd = FALSE, newdata = NULL,
-  linComb = NULL, nonEstimableAsNA = TRUE, outputClass = "ffmanova")
+ffmanova(
+  formula,
+  data = NULL,
+  stand = TRUE,
+  nSim = 0,
+  verbose = TRUE,
+  returnModel = TRUE,
+  returnY = FALSE,
+  returnYhat = FALSE,
+  returnYhatStd = FALSE,
+  newdata = NULL,
+  linComb = NULL,
+  nonEstimableAsNA = TRUE,
+  outputClass = "ffmanova"
+)
 }
 \arguments{
 \item{formula}{Model formula.  See "Note" below.}

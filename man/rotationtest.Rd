@@ -7,8 +7,7 @@
 \usage{
 rotationtests(xyObj, nSim, verbose = TRUE)
 
-rotationtest(modelData, errorData, simN = 999, dfE = -1,
-  dispsim = TRUE)
+rotationtest(modelData, errorData, simN = 999, dfE = -1, dispsim = TRUE)
 }
 \arguments{
 \item{xyObj}{a design-with-responses object created by \code{\link{xy_Obj}}}

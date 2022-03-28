@@ -4,7 +4,8 @@
 \name{dressing}
 \alias{dressing}
 \title{Dressing data}
-\format{A data frame with 29 observations on the following 7 variables.
+\format{
+A data frame with 29 observations on the following 7 variables.
 \describe{ 
 \item{press}{a numeric vector with values 75, 125 and
 225.  The homogenisation pressure.} 
@@ -26,7 +27,8 @@ volumes were registered.  These data are presented as smoothed histograms
 (equally spaced bins on log-scale).  The total area under the curve
 represents the total volume of the counted fat particles. The shape of the
 curve reflects how the total fat volume is distributed among the different
-particle sizes.} }}
+particle sizes.} }
+}
 \source{
 The data is taken from a research project financed by a grant
 (131472/112) from the Norwegian Research Council.  The project was managed

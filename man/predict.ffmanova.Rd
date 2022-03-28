@@ -4,8 +4,7 @@
 \alias{predict.ffmanova}
 \title{Predictions, mean predictions, adjusted means and linear combinations}
 \usage{
-\method{predict}{ffmanova}(object, newdata = NULL, linComb = NULL,
-  nonEstimableAsNA = TRUE, ...)
+\method{predict}{ffmanova}(object, newdata = NULL, linComb = NULL, nonEstimableAsNA = TRUE, ...)
 }
 \arguments{
 \item{object}{Output from \code{\link{ffmanova}}.}
