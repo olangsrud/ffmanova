@@ -20,6 +20,9 @@
 #     errorObs = {errorObs,df_error};  % cell array when incomplete errorObs
 # end
 #####################################################################
+
+#' @rdname linregEst 
+#' @name linregEst
 linregEnd = function(Umodel,Y){
 BetaU = t(Umodel)%*%Y
 Yhat = Umodel%*%BetaU

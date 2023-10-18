@@ -50,7 +50,7 @@
 #' calculations and some of the output variables are named according to SVD
 #' (\samp{U}, \samp{S} and \samp{V}).
 #' 
-#' @aliases linregEst linregStart linregEnd
+#' @name linregEst 
 #' @param X regressor matrix
 #' @param Y response matrix
 #' @param rank_lim tuning parameter for the rank. The default value corresponds

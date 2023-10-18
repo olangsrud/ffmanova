@@ -17,6 +17,8 @@
 # end
 ##################################################
 ## Rewritten by bhm
+
+#' @rdname m2c 
 c2m <- function(CC) { # Difference from matlab: returns m only
    do.call("cbind", CC)
 }# end c2m
