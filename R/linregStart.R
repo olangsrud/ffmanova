@@ -25,6 +25,8 @@
 # Vextra = V(:,(r+1):size(V,2));
 # VextraDivS1 = Vextra/S(1);
 #####################################################################
+
+#' @rdname linregEst 
 linregStart = function(X,rank_lim = 1e-9){
 nObs = nrow(X)
 svdX = svd(X,nv=ncol(X))

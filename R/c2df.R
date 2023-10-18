@@ -11,6 +11,8 @@
 #    df = [df size(C{i},2)];
 # end
 ###################################################
+
+#' @rdname m2c
 c2df = function(CC){ # Difference from matlab: returns m only
    df = dim(CC[[1]])[2];
    if(length(CC)>1) 
