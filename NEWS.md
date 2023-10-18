@@ -1,3 +1,9 @@
+## ffmanova 1.1.2
+
+* Minor fixes to avoid cran check note 
+  - Only about documentation of internal functions.  
+
+
 ## ffmanova 1.1.1
 
 * Minor fix in `ffAnova` example 
